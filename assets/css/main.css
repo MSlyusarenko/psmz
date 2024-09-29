@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 0%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 100%; }
+    100% { background-position: 0% 50%; }
+}
+
+.gradient-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: radial-gradient(circle at 20% 30%, #ff7e5f, #feb47b, #86e3ce, #d4a5a5, #9b59b6, #3498db, #2ecc71, #e74c3c);
+    background-size: 200% 200%;
+    animation: gradient-animation 15s ease infinite;
+}
+
+.text-main {
+    color: white;
+}
+
+.bt-copy-disabled {
+    background-color: #e5e7eb; /* Серый фон для заблокированной кнопки */
+    color: #9ca3af; /* Серый текст */
+    cursor: not-allowed; /* Курсор "нельзя" */
+}
+
+.bt-copy-disabled {
+    padding: 4px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #27ae60;
+    color: #111827;
+    font-size: 16px;
+    cursor: not-allowed; /* Курсор "нельзя" */
+    transition: 0.3s ease;
+}
+
+.bt-copy {
+    padding: 4px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4ade80;
+    color: #111827;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.bt-copy:hover {
+    background-color: #27ae60;
+    transition: 0.3s ease;
+}
+
+.bt-copy:active {
+    background-color: #096630;
+    transition: 0.01s ease;
+}
+
+.SecVersion {
+    padding: 4px 12px;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.buttonGH {
+    padding: 4px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #171515;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.buttonGH:hover {
+    color: #000000;
+    background-color: #ffffff;
+    transition: 0.3s ease;
+}
+
+.buttonGH:active {
+    color: #fff;
+    background-color: #000000;
+    transition: 0.01s ease;
+}
+
+.buttonVK {
+    padding: 4px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #0077FF;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.buttonVK:hover {
+    background-color: #006de9;
+    transition: 0.3s ease;
+}
+
+.buttonVK:active {
+    background-color: #005eca;
+    transition: 0.01s ease;
+}
+
+.nav-button {
+    color: white;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Для Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Firefox (uncomment to work in Firefox, although other properties will not work!)  */
+/** {
+  scrollbar-width: thin;
+  scrollbar-color: #1E293B #FFFFFF;
+}*/
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #FFFFFF;
+  }
+  
+  *::-webkit-scrollbar-track:hover {
+    background-color: #FFFFFF;
+  }
+  
+  *::-webkit-scrollbar-track:active {
+    background-color: #FFFFFF;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #1E293B;
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #1E293B;
+  }
+  
+  *::-webkit-scrollbar-thumb:active {
+    background-color: #1E293B;
+  }
