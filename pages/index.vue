@@ -18,6 +18,7 @@
                     Войти с помощью VK ID
                   </div>
                 </Button>
+                <UButton>Ку</UButton>
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
+import { Pool } from 'pg'
 
-const { Pool } = await import('pg');
 // Загружаем переменные окружения из .env
 dotenv.config();
 
