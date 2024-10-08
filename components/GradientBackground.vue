@@ -21,7 +21,8 @@
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    background: radial-gradient(circle at 20% 30%, #ff7e5f, #feb47b, #86e3ce, #d4a5a5, #9b59b6, #3498db, #2ecc71, #e74c3c);
+    background: #121212;
+
     background-size: 200% 200%;
     animation: gradient-animation 15s ease infinite;
   }

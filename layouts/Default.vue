@@ -10,13 +10,8 @@
     </nav>
     <section>
       <div>
-        <Button class="absolute bottom-0 right-0 mb-4 mr-4 buttonGH font-medium" @click="github">
-          <i class="mdi mdi-github"></i> Код на GitHub
-        </Button>
-      </div>
-      <div>
         <section class="absolute bottom-0 left-0 mb-4 ml-4 SecVersion bg-slate-800 rounded-xl" @click="isOpen = true">
-          V. 2.0.0-β
+          V. 0.1.0-β
         </section>
       </div>
     </section>
@@ -24,7 +19,7 @@
       <div class="p-4">
         <Placeholder class="h-48" />
         <ul>
-          <li class="mb-2"><b>● Версия 2.0.0-Beta</b></li>
+          <li class="mb-2"><b>● Версия 0.1.0-Beta</b></li>
         </ul>
         Возможны баги и недочёты!
         Скоро здесь будут расписаны обновления.

@@ -5,67 +5,21 @@
 
     <div class="flex-grow flex items-center justify-center relative">
       <div class="text-center">
-        <section class="TopBarBg bg-slate-800 rounded-xl">
-          <div class="grid grid-cols-1 md:grid-cols-3 place-items-stretch gap-4 p-6 mb-4">
-            <NuxtLink class="nav-button" to="/">Исправление приказов</NuxtLink>
-            <NuxtLink class="nav-button" to="/soon">Создание приказов</NuxtLink>
-            <NuxtLink class="nav-button" to="/contacts">Связь с разработчиком</NuxtLink>
-          </div>
-        </section>
-        <section class="bg-slate-800 rounded-xl mb-36 md:mb-24">
+        <section class="card-main shadow-main rounded-xl mb-36 md:mb-24">
           <div class="p-6 md:p-12">
-            <h1 class="text-3xl pb-12 font-bold break-words text-main">
-              Автоматическое исправление приказов
+            <h1 class="text-3xl pb-6 font-bold break-words text-main">
+              Панель управления
             </h1>
             <div>
-              <div class="grid grid-cols-1 md:grid-cols-2 place-items-stretch gap-4">
-                <div>
-                  <UInput
-                    v-model.number="badOrderNumber"
-                    ref="inputField1"
-                    id="myInput3"
-                    name="myInput3"
-                    color="white"
-                    variant="outline"
-                    type="number"
-                    placeholder="№ первого неверного приказа (3971)"
-                  />
-                </div>
-                <div>
-                  <UInput
-                    v-model.number="badFinishOrderNumber"
-                    ref="inputField2"
-                    id="myInput4"
-                    name="myInput4"
-                    color="white"
-                    variant="outline"
-                    type="number"
-                    placeholder="№ последнего неверного приказа (3989)"
-                  />
-                </div>
+              <div class="pt-4">
+                <Button class="bt-vk font-medium" @click="copy">
+                  <div class="flex items-center">
+                    <img src="/VK.svg" alt="VK" class="w-5 h-5 mr-1.5" />
+                    Войти с помощью VK ID
+                  </div>
+                </Button>
+
               </div>
-              <UInput
-                v-model.number="orderOffset"
-                ref="inputFieldS"
-                id="myInput2"
-                name="myInput2"
-                class="pt-4"
-                color="white"
-                variant="outline"
-                type="number"
-                :placeholder="isMobile
-                  ? 'Смещение № невер. до вер. (3971 -> 3973)'
-                  : 'Смещение № первого неверного приказа от верного (3971 -> 3973)'"
-              />
-            </div>
-            <div class="pt-4">
-              <Button 
-                :class="isDisabled ? 'bt-copy-disabled font-medium' : 'bt-copy font-medium'" 
-                @click="copy"
-                :disabled="isDisabled"
-              >
-                {{ isDisabled ? 'Введите данные' : 'Скопировать приказы' }}
-              </Button>
             </div>
           </div>
         </section>
@@ -92,12 +46,12 @@ const isMobile = ref<boolean>(false);
 
 const isDisabled = computed(() => {
   return (
-    badOrderNumber.value === null || 
-    badFinishOrderNumber.value === null || 
+    badOrderNumber.value === null ||
+    badFinishOrderNumber.value === null ||
     orderOffset.value === null ||
-    badOrderNumber.value === 0 || 
-    badFinishOrderNumber.value === 0 || 
-    orderOffset.value === null || 
+    badOrderNumber.value === 0 ||
+    badFinishOrderNumber.value === 0 ||
+    orderOffset.value === null ||
     orderOffset.value === 0
   );
 });

@@ -17,7 +17,7 @@
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    background: radial-gradient(circle at 20% 30%, #ff7e5f, #feb47b, #86e3ce, #d4a5a5, #9b59b6, #3498db, #2ecc71, #e74c3c);
+    background: radial-gradient(circle at 20% 30%, #ff4b32, #ff7a60, #ff957a);
     background-size: 200% 200%;
     animation: gradient-animation 15s ease infinite;
 }
@@ -41,6 +41,27 @@
     font-size: 16px;
     cursor: not-allowed; /* Курсор "нельзя" */
     transition: 0.3s ease;
+}
+
+.bt-vk {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 6px;
+  background-color: #0077FF;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.bt-vk:hover {
+  background-color: #0066da;
+    transition: 0.3s ease;
+}
+
+.bt-vk:active {
+  background-color: #005ac0;
+  transition: 0.01s ease;
 }
 
 .bt-copy {
@@ -178,3 +199,11 @@ input[type="number"] {
   *::-webkit-scrollbar-thumb:active {
     background-color: #1E293B;
   }
+
+.shadow-mainOFF {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.card-main {
+  background-color: #1e1e1e;
+}
