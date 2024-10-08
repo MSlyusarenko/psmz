@@ -38,6 +38,14 @@ export default defineNuxtConfig({
       { name: 'Poppins', provider: 'google' },
     ]
   },
-  
+
+  nitro: {
+    rollupConfig: {
+      output: {
+        format: 'es'
+      }
+    }
+  },
+
   modules: ['@nuxt/fonts', '@nuxt/ui']
 })

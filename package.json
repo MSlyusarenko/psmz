@@ -18,6 +18,8 @@
     "@mdi/font": "^7.4.47",
     "@nuxt/fonts": "^0.8.0",
     "@nuxt/ui": "^2.18.5",
+    "@nuxthub/core": "^0.7.26",
+    "axios": "^1.7.7",
     "dotenv": "^16.4.5",
     "nuxt": "^3.13.0",
     "pg": "^8.13.0",
@@ -26,5 +28,9 @@
     "vue": "latest",
     "vue-router": "latest",
     "vue-toastification": "^2.0.0-rc.5"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.10",
+    "wrangler": "^3.80.1"
   }
 }
