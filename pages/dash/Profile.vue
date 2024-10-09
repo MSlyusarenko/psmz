@@ -1,40 +1,49 @@
 <template>
-    <div class="h-screen flex flex-col items-center justify-center">
-      <h1 class="text-3xl font-bold mb-4">Профиль пользователя</h1>
-      <img :src="user.avatar" alt="Аватар пользователя" class="w-32 h-32 rounded-full mb-4" />
-      <p class="text-xl">Имя: {{ user.firstName }}</p>
-      <p class="text-xl">Фамилия: {{ user.lastName }}</p>
-      <p class="text-xl">ID на сайте: {{ user.id }}</p>
-      <p class="text-xl">ID роли: {{ user.role }}</p>
+  <div class="profile">
+    <h3 v-if="error">{{ error }}</h3>
+    <div v-else>
+      <img :src="user.avatar" alt="Avatar" class="avatar" />
+      <p>ID на сайте: {{ user.id }}</p>
+      <p>ID ВКонтакте: {{ user.vk_id }}</p>
+      <p>Имя: {{ user.first_name }}</p>
+      <p>Фамилия: {{ user.last_name }}</p>
+      <p>Дата создания: {{ formattedDate }}</p>
     </div>
-  </template>
-  
-  <script setup lang="ts">
-  import { ref, onMounted } from 'vue';
-  import { useRouter } from 'vue-router'; // Импортируем useRouter
-  
-  const user = ref(null);
-  const router = useRouter();
-  
-  onMounted(async () => {
-    const vkId = new URLSearchParams(window.location.search).get('vk_id'); // Получаем vk_id из query параметров
-  
-    // Запрос к вашему API для получения информации о пользователе
-    const response = await fetch(`/api/auth?vk_id=${vkId}`);
-    
-    if (response.ok) {
-      const data = await response.json();
-      
-      if (data.exists) {
-        user.value = data.user;
-      } else {
-        // Обработка случая, если пользователь не найден
-        router.push('/'); // Перенаправляем на главную страницу
-      }
-    } else {
-      // Обработка ошибки
-      router.push('/'); // Перенаправляем на главную страницу
-    }
-  });
-  </script>
-  
+  </div>
+</template>
+
+<script setup>
+import { useFetch } from '#app'
+
+const { data: user, error } = await useFetch('/api/profile')
+
+// Проверяем, существует ли user и его createdAt перед формированием даты
+const formattedDate = user && user.value.createdAt
+  ? new Date(user.value.createdAt).toLocaleString('ru-RU', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    })
+  : null
+</script>
+
+<style scoped>
+.profile {
+  text-align: center;
+  padding: 20px;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+</style>

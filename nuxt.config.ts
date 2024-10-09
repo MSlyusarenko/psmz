@@ -1,9 +1,15 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: false },
 
   css: ['~/assets/css/main.css', '@mdi/font/css/materialdesignicons.css'],
+
+  runtimeConfig: {
+    jwtSecret: process.env.JWT_SECRET, // Переносим сюда jwtSecret
+    public: {
+      version: '1.0.0'
+    }
+  },
 
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
@@ -25,12 +31,6 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {},
     },
-  },
-
-  runtimeConfig: {
-    public: {
-      version: '1.0.0'
-    }
   },
 
   fonts: {

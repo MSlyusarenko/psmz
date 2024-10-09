@@ -1,20 +1,14 @@
-import { drizzle } from "drizzle-orm/node-postgres";
+import { drizzle } from "drizzle-orm/postgres-js";
 export { sql, eq, and, or } from 'drizzle-orm'
-import * as schema from '../database/schema'
-export const tables = schema
+import * as schema from '../database/schema';
+import postgres from 'postgres';
 
-import { Pool } from 'pg'
+export const tables = schema;
 
-// Создаем пул соединений с базой данных
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL, // Используем DATABASE_URL из .env
-  ssl: {
-    rejectUnauthorized: false, // Для Neon обычно требуется это
-  },
-});
+const queryClient = postgres(process.env.DATABASE_URL);
 
 export function useDrizzle() {
-  return drizzle(pool, { schema })
+  return drizzle(queryClient, { schema })
 }
 
 export type User = typeof schema.users.$inferSelect
