@@ -1,6 +1,8 @@
-interface SessionUser {
-    id: number;
-    fist_name: string;
-    last_name: string;
-    avatar: string;
-  }
+export interface SessionUser {
+  id: number;
+  vk_id: string;
+  first_name: string;
+  last_name: string;
+  avatar: string;
+  createdAt: string;
+}
