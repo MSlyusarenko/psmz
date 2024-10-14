@@ -23,8 +23,24 @@ export default defineNuxtConfig({
         { hid: 'og:image', property: 'og:image', content: 'https://auto-prikaz.vercel.app/preview.webp' },
         { hid: 'og:url', property: 'og:url', content: 'https://auto-prikaz.vercel.app' },
         { hid: 'og:type', property: 'og:type', content: 'website' }
+      ],
+      link: [
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/icon?family=Material+Icons'
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap'
+        }
       ]
     }
+  },
+
+  fonts: {
+    families: [
+      { name: 'Google Sans', provider: 'google' },
+    ]
   },
 
   postcss: {

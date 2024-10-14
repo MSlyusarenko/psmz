@@ -2,24 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes gradient-animation {
-    0% { background-position: 0% 50%; }
-    25% { background-position: 50% 0%; }
-    50% { background-position: 100% 50%; }
-    75% { background-position: 50% 100%; }
-    100% { background-position: 0% 50%; }
+body {
+  font-family: 'Google Sans', sans-serif;
 }
 
-.gradient-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    background: radial-gradient(circle at 20% 30%, #ff4b32, #ff7a60, #ff957a);
-    background-size: 200% 200%;
-    animation: gradient-animation 15s ease infinite;
+html {
+  background-color: #121212;
 }
 
 .text-main {
@@ -83,6 +71,27 @@
 .bt-copy:active {
     background-color: #096630;
     transition: 0.01s ease;
+}
+
+.bt-main {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 6px;
+  background-color: #ff4b32;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.bt-main:hover {
+  background-color: #ff3f25;
+  transition: 0.3s ease;
+}
+
+.bt-main:active {
+  background-color: #d63722;
+  transition: 0.01s ease;
 }
 
 .SecVersion {

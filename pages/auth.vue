@@ -12,13 +12,12 @@
                         </h1>
                         <div>
                             <div class="pt-4">
-                                <Button class="bt-vk font-medium" @click="login">
+                                <Button class="bt-vk font-bold" @click="login">
                                     <div class="flex items-center">
                                         <img src="/VK.svg" alt="VK" class="w-5 h-5 mr-1.5" />
                                         Войти с помощью VK ID
                                     </div>
                                 </Button>
-                                <UButton>Ку</UButton>
                             </div>
                         </div>
                     </div>
@@ -29,56 +28,43 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import Topbar from '~/components/Topbar.vue';
 import axios from 'axios';
 
 const router = useRouter();
-const isMobile = ref<boolean>(false);
 
 // Проверка сессии и перенаправление
 const checkSession = async () => {
-    try {
-        // Убедитесь, что вы обращаетесь к правильному API
-        const response = await axios.get('/api/session/check'); 
-        return response.data; // Возвращаем данные сессии
-    } catch (error) {
-        console.error('Ошибка при проверке сессии:', error);
-        return null; // Возвращаем null в случае ошибки
-    }
+  try {
+    // Убедитесь, что вы обращаетесь к правильному API
+    const response = await axios.get('/api/session/check');
+    return response.data; // Возвращаем данные сессии
+  } catch (error) {
+    console.error('Ошибка при проверке сессии:', error);
+    return null; // Возвращаем null в случае ошибки
+  }
 };
-
 
 onMounted(async () => {
-    const sessionData = await checkSession(); // Вызываем функцию проверки сессии
-    if (sessionData) {
-        router.push('/dash'); // Перенаправление, если пользователь авторизован
-    }
+  const sessionData = await checkSession(); // Проверяем сессию
+  if (sessionData?.session) {
+    // Если есть сессия, перенаправляем на /dash
+    router.push('/dash');
+  }
 });
 
+// Вход через VK
 const login = async () => {
-    try {
-        const { data } = await axios.get('/api/auth'); // Получаем URL для входа через VK
-        window.location.href = data.loginUrl; // Перенаправляем пользователя на страницу авторизации VK
-    } catch (error) {
-        console.error('Ошибка при получении URL для входа через VK:', error);
-    }
+  try {
+    const { data } = await axios.get('/api/auth'); // Получаем URL для входа через VK
+    window.location.href = data.loginUrl; // Перенаправляем на VK для авторизации
+  } catch (error) {
+    console.error('Ошибка при получении URL для входа через VK:', error);
+  }
 };
-
-const checkMobile = () => {
-    isMobile.value = window.innerWidth < 768;
-};
-
-onMounted(() => {
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-});
-
-onBeforeUnmount(() => {
-    window.removeEventListener('resize', checkMobile);
-});
 </script>
+
 
 <style scoped>
 .auth {

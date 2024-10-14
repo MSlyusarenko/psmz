@@ -1,5 +1,5 @@
 <template>
-  <div class="profile">
+  <div class="profile bg-[#2c2d31] size-full rounded-bl-2xl rounded-tl-2xl">
     <h3 v-if="error">{{ error }}</h3>
     <div v-else>
       <img :src="user.avatar" alt="Avatar" class="avatar" />
@@ -13,12 +13,11 @@
 </template>
 
 <script setup>
-import { definePageMeta } from 'nuxt/app';
-definePageMeta({
-  middleware: ['auth'],
-});
-
 import { useFetch } from '#app'
+
+definePageMeta({
+  layout: 'dash'
+});
 
 const { data: user, error } = await useFetch('/api/profile')
 

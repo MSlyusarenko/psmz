@@ -1,8 +1,9 @@
+// server/utils/session.ts
 import jwt from "jsonwebtoken";
 import { defineEventHandler } from 'h3';
-import { getCookie } from 'h3';
-import type { SessionUser } from '@/types'; // Импортируем интерфейс SessionUser
-import type { H3Event } from 'h3'; // Импортируем H3Event
+import { getCookie, deleteCookie } from 'h3';
+import type { SessionUser } from '@/types';
+import type { H3Event } from 'h3';
 
 const createSessionToken = (session: SessionUser) => {
   return jwt.sign(session, process.env.JWT_SECRET!, {
@@ -18,12 +19,15 @@ const verifySessionToken = (token: string): SessionUser | null => {
   }
 };
 
-// Указываем тип H3Event для параметра event
 export const getUserSession = (event: H3Event): SessionUser | null => {
   const cookie = getCookie(event, 'session.token');
   if (!cookie) return null;
 
   return verifySessionToken(cookie);
+};
+
+export const deleteUserSession = (event: H3Event) => {
+  deleteCookie(event, 'session.token'); // Убедись, что имя куки соответствует тому, что ты используешь
 };
 
 // Экспортируем функции

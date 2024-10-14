@@ -1,7 +1,5 @@
 <template>
   <div>
-    <GradientBackground />
-    <Topbar />
     <NuxtPage />
     <nav class="topbar w-full py-4 fixed top-0 z-50 flex items-center">
       <div class="flex items-center ml-4">
@@ -10,7 +8,7 @@
     </nav>
     <section>
       <div>
-        <section class="absolute bottom-0 left-0 mb-4 ml-4 SecVersion bg-slate-800 rounded-xl" @click="isOpen = true">
+        <section class="absolute bottom-0 left-0 mb-4 ml-4 SecVersion bg-[#1e1e1e] rounded-xl" @click="isOpen = true">
           V. 0.1.0-β
         </section>
       </div>
@@ -29,9 +27,6 @@
 </template>
 
 <script setup lang="ts">
-import GradientBackground from '~/components/GradientBackground.vue';
-import Topbar from '~/components/Topbar.vue';
-
 const isOpen = ref(false)
 
 function github() {
