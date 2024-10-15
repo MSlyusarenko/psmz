@@ -4,12 +4,13 @@
             class="profile-sidebar p-4 mt-auto flex items-center rounded-lg cursor-pointer" 
             @click="selectProfile"
             :class="{
-                'bg-[#2c2d31]': isActive,
+                'bg-[#ff4b32]': isActive,
                 'bg-[#1e1e1e]': !isActive
             }"
         >
             <div class="rounded-full h-10 w-10 flex items-center justify-center">
                 <img 
+                    v-if="user"
                     :src="user.avatar" 
                     alt="Аватар" 
                     class="rounded-full h-10 transition-all duration-300" 
@@ -29,27 +30,37 @@ import { useRouter, useRoute } from 'vue-router';
 import { ref, watch } from 'vue';
 import SidebarCategory from './Sidebar/SidebarCategory.vue';
 
-const { data: user, error } = await useFetch('/api/profile');
+// Описание структуры данных пользователя
+interface User {
+    avatar: string;
+    first_name: string;
+    last_name: string;
+    // Добавьте другие поля, если они есть в вашем API
+}
+
+const { data: userData, error } = await useFetch<User>('/api/profile'); // Используем дженерик для указания типа данных
+const user = ref<User | null>(null);
+
+if (userData.value) {
+    user.value = userData.value; // Присваиваем данные пользователя
+}
+
 const router = useRouter();
 const route = useRoute();
 
 // Проверяем, активна ли текущая страница профиля
 const isActive = ref(route.path === '/dash/profile');
-const isSelected = ref(false); // Добавлено состояние для выбранного элемента
 
 // Наблюдаем за изменением маршрута и обновляем isActive
 watch(
     () => route.path,
     (newPath) => {
         isActive.value = newPath === '/dash/profile';
-        // Если мы на странице профиля, делаем элемент выбранным
-        isSelected.value = isActive.value; 
     }
 );
 
 const selectProfile = () => {
     router.push('/dash/profile');
-    isSelected.value = true; // Устанавливаем isSelected в true при выборе
 };
 
 const categories = ref([
