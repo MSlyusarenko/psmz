@@ -14,7 +14,7 @@
               <div class="pt-4">
                 <Button class="bt-main" @click="goToAuth">
                   <div class="flex items-center">
-                    <span class="material-icons mr-1.5">newspaper</span>
+                    <span class="material-symbols-rounded mr-1.5">newspaper</span>
                     <span class="font-bold">Панель управления</span>
                   </div>
                 </Button>

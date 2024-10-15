@@ -1,5 +1,5 @@
 <template>
-  <div class="profile">
+  <div class="">
     <h3 v-if="error">{{ error }}</h3>
     <div v-else>
       <img :src="user.avatar" alt="Avatar" class="avatar" />
@@ -7,6 +7,17 @@
       <p>ID ВКонтакте: {{ user.vk_id }}</p>
       <p>Имя: {{ user.first_name }}</p>
       <p>Фамилия: {{ user.last_name }}</p>
+      <p>Дата создания: {{ formattedDate }}</p>
+      <p>Дата создания: {{ formattedDate }}</p>
+      <p>Дата создания: {{ formattedDate }}</p>
+      <p>Дата создания: {{ formattedDate }}</p>
+      <p>Дата создания: {{ formattedDate }}</p>
+      <p>Дата создания: {{ formattedDate }}</p>
+      <p>Дата создания: {{ formattedDate }}</p>
+      <p>Дата создания: {{ formattedDate }}</p>
+      <p>Дата создания: {{ formattedDate }}</p>
+      <p>Дата создания: {{ formattedDate }}</p>
+      <p>Дата создания: {{ formattedDate }}</p>
       <p>Дата создания: {{ formattedDate }}</p>
       <button @click="logout" class="logout-button">Выйти</button>
     </div>
@@ -47,21 +58,11 @@ const logout = async () => {
 </script>
 
 <style scoped>
-.profile {
+.page-dash-style {
   text-align: center;
   padding: 20px;
-}
-
-.avatar {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 18px;
-  margin: 10px 0;
+  height: 100%; /* Обеспечивает, что элемент занимает всю высоту */
+  overflow: auto; /* Позволяет содержимому скроллиться */
 }
 
 .logout-button {

@@ -10,7 +10,7 @@
   
       <!-- Анимация через max-height -->
       <transition name="slide">
-        <div v-show="!isCollapsed" class="pl-4 overflow-hidden" ref="content">
+        <div v-show="!isCollapsed" class="overflow-hidden" ref="content">
           <SidebarItem
             v-for="link in category.links"
             :key="link.title"

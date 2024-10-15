@@ -30,16 +30,37 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex">
+  <div class="flex overflow-hidden">
     <Sidebar />
-    <div class="content flex-grow">
-      <slot />
-    </div>
+    <main class="flex flex-col flex-grow">
+      <div class="content flex-grow overflow-y-auto page-dash-style bg-[#2c2d31] size-full rounded-bl-2xl rounded-tl-2xl">
+        <NuxtPage />
+      </div>
+    </main>
   </div>
 </template>
 
 <style scoped>
+.page-dash-style {
+  text-align: center;
+  padding: 20px;
+  height: 100%; /* Обеспечивает, что элемент занимает всю высоту */
+  overflow: auto; /* Позволяет содержимому скроллиться */
+}
+
+.flex {
+  display: flex;
+  height: 100vh; /* Занимает полную высоту экрана */
+}
+
+main {
+  flex: 1; /* Заставляет main занимать всё доступное пространство */
+  display: flex;
+  flex-direction: column; /* Убедитесь, что дочерние элементы располагаются вертикально */
+}
+
 .content {
-  margin-left: 0px; /* ширина боковой панели */
+  flex: 1; /* Заставляет контент занимать всё доступное пространство в main */
+  overflow-y: auto; /* Прокрутка по вертикали, если контента больше, чем помещается на экран */
 }
 </style>

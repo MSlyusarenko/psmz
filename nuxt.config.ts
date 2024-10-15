@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
-  devtools: { enabled: false },
+  devtools: { enabled: true },
   ssr: true,
 
   css: ['~/assets/css/main.css', '@mdi/font/css/materialdesignicons.css'],
@@ -27,7 +27,19 @@ export default defineNuxtConfig({
       link: [
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/icon?family=Material+Icons'
+          href: 'https://fonts.googleapis.com/css2?family=Material+Icons'
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Material+Icons+Outlined'
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Material+Symbols'
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded'
         },
         {
           rel: 'stylesheet',
@@ -48,12 +60,6 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {},
     },
-  },
-
-  fonts: {
-    families: [
-      { name: 'Poppins', provider: 'google' },
-    ]
   },
 
   nitro: {
