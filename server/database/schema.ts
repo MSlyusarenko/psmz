@@ -8,4 +8,5 @@ export const users = pgTable('users', {
   role: text('role'),
   avatar: text('avatar').notNull(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
+  city: text('city'),
 })

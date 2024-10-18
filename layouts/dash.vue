@@ -42,7 +42,7 @@ onMounted(() => {
 
 <style scoped>
 .page-dash-style {
-  text-align: center;
+  /* text-align: center; */
   padding: 20px;
   height: 100%; /* Обеспечивает, что элемент занимает всю высоту */
   overflow: auto; /* Позволяет содержимому скроллиться */
