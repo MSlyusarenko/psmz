@@ -3,9 +3,11 @@ export interface SessionUser {
   vk_id: string;
   first_name: string;
   last_name: string;
+  nickname: string;
+  city: string;
   avatar: string;
   createdAt: string;
-  user: string;
+  donate: number | null; // Добавлено новое поле
 }
 
 export interface SidebarCategory {

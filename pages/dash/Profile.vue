@@ -7,7 +7,9 @@
       <p>ID ВКонтакте: {{ user.vk_id }}</p>
       <p>Имя: {{ user.first_name }}</p>
       <p>Фамилия: {{ user.last_name }}</p>
+      <p>Никнейм: {{ user.nickname || 'Нет никнейма' }}</p>
       <p>Город: {{ user.city }}</p>
+      <p>Донат: {{ user.donate }}</p>
       <p>Дата создания: {{ formattedDate }}</p>
       <p>Дата создания: {{ formattedDate }}</p>
       <p>Дата создания: {{ formattedDate }}</p>
@@ -35,6 +37,11 @@ definePageMeta({
 });
 
 const { data: user, error } = await useFetch('/api/profile');
+
+if (error.value) {
+  console.error('Ошибка при получении данных пользователя:', error.value);
+}
+
 const router = useRouter();
 
 // Проверяем, существует ли user и его createdAt перед формированием даты

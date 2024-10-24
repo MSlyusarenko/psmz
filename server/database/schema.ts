@@ -1,4 +1,4 @@
-import { pgTable, text, integer, timestamp, serial } from 'drizzle-orm/pg-core'
+import { pgTable, text, integer, timestamp, serial } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
@@ -10,4 +10,5 @@ export const users = pgTable('users', {
   avatar: text('avatar').notNull(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   city: text('city'),
-})
+  donate: integer('donate').default(0),
+});

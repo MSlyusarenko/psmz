@@ -3,7 +3,10 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
 
-  css: ['~/assets/css/main.css', '@mdi/font/css/materialdesignicons.css'],
+  css: [
+    'primevue/resources/themes/saga-blue/theme.css',
+    'primevue/resources/primevue.min.css',
+    'primeicons/primeicons.css', '~/assets/css/main.css', '@mdi/font/css/materialdesignicons.css'],
 
   runtimeConfig: {
     jwtSecret: process.env.JWT_SECRET, // Переносим сюда jwtSecret
@@ -69,6 +72,10 @@ export default defineNuxtConfig({
       }
     }
   },
+
+  plugins: [
+    { src: '~/plugins/primevue.js' }
+  ],
 
   modules: ['@nuxt/fonts', '@nuxt/ui']
 })

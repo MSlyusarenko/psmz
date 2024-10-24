@@ -1,11 +1,26 @@
-import { defineEventHandler, useQuery } from 'h3';
-import { db } from '~/server/lib/db'; // Импортируйте вашу конфигурацию базы данных
-import { users } from '~/server/database/schema'; // Импортируйте схему вашей таблицы
+import { defineEventHandler } from 'h3';
+import { useDrizzle, eq } from '~/server/utils/drizzle';
+import { tables } from '~/server/utils/drizzle';
 
 export default defineEventHandler(async (event) => {
-    // Выполняем запрос к базе данных
-    const allUsers = await db.select().from(users);
+  const db = useDrizzle();
 
-    // Возвращаем всех пользователей
-    return allUsers;
+  try {
+    const users = await db
+      .select({
+        id: tables.users.id,
+        first_name: tables.users.first_name,
+        last_name: tables.users.last_name,
+        nickname: tables.users.nickname,
+        avatar: tables.users.avatar,
+        city: tables.users.city,
+        role: tables.users.role,
+      })
+      .from(tables.users);
+
+    return users;
+  } catch (error) {
+    console.error('Ошибка при получении пользователей:', error);
+    return { error: 'Не удалось загрузить пользователей' };
+  }
 });
