@@ -7,6 +7,8 @@
       <p>ID ВКонтакте: {{ user.vk_id }}</p>
       <p>Имя: {{ user.first_name }}</p>
       <p>Фамилия: {{ user.last_name }}</p>
+      <p>Город: {{ user.city }}</p>
+      <p>Дата создания: {{ formattedDate }}</p>
       <p>Дата создания: {{ formattedDate }}</p>
       <p>Дата создания: {{ formattedDate }}</p>
       <p>Дата создания: {{ formattedDate }}</p>

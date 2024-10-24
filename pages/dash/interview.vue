@@ -19,6 +19,9 @@ import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 import { useAsyncData } from 'nuxt/app';
 
+const { data: user, error } = await useFetch('/api/profile');
+const router = useRouter();
+
 const postToGroup = async (groupNumber: number) => {
   try {
     const message = "Это тест публикации в этой группе через бота ПСМЗ";

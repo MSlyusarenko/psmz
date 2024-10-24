@@ -5,6 +5,7 @@ export const users = pgTable('users', {
   vk_id: text('vk_id'),
   first_name: text('first_name').notNull(),
   last_name: text('last_name').notNull(),
+  nickname: text('nickname').notNull(),
   role: text('role'),
   avatar: text('avatar').notNull(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
