@@ -55,6 +55,7 @@ export default defineEventHandler(async (event) => {
         });
 
         // Если пользователь не найден, создаем нового
+        // Если пользователь не найден, создаем нового
         if (!user) {
             user = (await useDrizzle().insert(users).values({
                 first_name: userResponse.response[0].first_name,
@@ -70,8 +71,13 @@ export default defineEventHandler(async (event) => {
                 avatar: users.avatar,
                 createdAt: users.createdAt,
                 donate: users.donate,
+                position_psmz: users.position_psmz, // Новое поле
+                position_mz: users.position_mz,     // Новое поле
+                rank: users.rank,                   // Новое поле
+                bank: users.bank,                   // Новое поле
             }))[0];
         }
+
 
 
 

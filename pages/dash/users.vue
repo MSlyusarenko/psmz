@@ -1,58 +1,122 @@
 <template>
-  <div class="p-4">
-    <h1 class="text-2xl font-bold mb-4">Список пользователей</h1>
-    <DataTable :value="users" paginator rows="10" :loading="loading">
-      <Column field="nickname" header="Никнейм" sortable></Column>
-      <Column field="city" header="Город" sortable></Column>
-      <Column header="Действия">
-        <template #body="{ data }">
-          <Button label="Удалить" icon="pi pi-trash" @click="deleteUser(data)" class="p-button-danger" />
+  <div class="overflow-hidden rounded-2xl">
+    <DataTable :value="users" responsiveLayout="scroll" v-model:expandedRows="expandedRows" data-key="id" showGridlines removable-sort>
+      <!-- Стрелка для разворачивания строки с действиями -->
+      <Column expander style="width: 3rem" />
+
+      <!-- Столбец с аватаркой и никнеймом -->
+      <Column header="Никнейм" field="nickname" sortable>
+        <template #body="slotProps">
+          <div class="flex items-center">
+            <img :src="slotProps.data.avatar" alt="User Avatar" class="w-8 h-8 rounded-full mr-2" />
+            <span :class="getNicknameColor(slotProps.data.city)" class="font-bold">{{ slotProps.data.nickname }}</span>
+          </div>
         </template>
       </Column>
-    </DataTable>
 
-    <p v-if="!users.length" class="mt-4">Пользователи не найдены.</p>
+      <!-- Остальные столбцы аналогично -->
+      <Column field="id" header="ID" sortable :style="{ width: '50px' }" />
+      <Column header="Город" field="city" sortable>
+        <template #body="slotProps">
+          {{ getCityName(slotProps.data.city) }}
+        </template>
+      </Column>
+      <Column field="role" header="Роль" sortable />
+      <Column field="position_psmz" header="Должность в ПСМЗ" sortable />
+      <Column field="position_mz" header="Должность в МЗ" sortable />
+      <Column field="rank" header="Ранг" sortable />
+      <Column field="bank" header="Банк" sortable />
+
+      <!-- Разворачиваемая строка с действиями -->
+      <template #expansion="{ data }">
+        <div class="flex flex-column">
+          <Button label="Редактировать" @click="editUser(data.id)" class="bg-table mr-2" />
+          <Button label="Удалить" @click="deleteUser(data.id)" class="bg-table mr-2" />
+        </div>
+      </template>
+    </DataTable>
   </div>
 </template>
 
-<script lang="ts" setup>
-import { ref, onMounted } from "vue";
-import DataTable from "primevue/datatable";
-import Column from "primevue/column";
-import Button from "primevue/button";
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 
-const users = ref<any[]>([]);
-const loading = ref(true);
+const users = ref([]);
+const expandedRows = ref([]);
 
-// Эмуляция загрузки данных
+// Функция для получения пользователей
 const fetchUsers = async () => {
-  loading.value = true;
   try {
-    // Здесь должна быть ваша логика получения пользователей
-    // Например, через API
-    users.value = [
-      { id: 1, nickname: 'user1', city: 'Мирный' },
-      { id: 2, nickname: 'user2', city: 'Приволжск' },
-      { id: 3, nickname: 'user3', city: 'Невский' },
-    ];
+    const response = await axios.get('/api/users'); // Убедитесь, что путь корректен
+    users.value = response.data.map(user => {
+      return {
+        ...user,
+      };
+    });
   } catch (error) {
-    console.error("Ошибка при загрузке пользователей:", error);
-  } finally {
-    loading.value = false;
+    console.error('Ошибка при получении пользователей:', error);
   }
 };
 
-const deleteUser = (user: { nickname: string }) => {
-  // Логика удаления пользователя
-  console.log(`Удален пользователь: ${user.nickname}`);
-  // Удаление пользователя из массива (здесь для примера)
-  users.value = users.value.filter(u => u.nickname !== user.nickname);
+// Функция для получения названия города
+const getCityName = (cityId) => {
+  const cities = {
+    1: 'Мирный',
+    2: 'Приволжск',
+    3: 'Невский',
+  };
+  return cities[cityId] || 'Неизвестный город'; // Возвращаем название города или 'Неизвестный город'
 };
 
-// Загрузка пользователей при монтировании компонента
+// Функция для получения цвета никнейма в зависимости от города
+const getNicknameColor = (cityId) => {
+  switch (cityId) {
+    case 1:
+      return 'text-blue-400';
+    case 2:
+      return 'text-red-400';
+    case 3:
+      return 'text-green-400';
+    default:
+      return 'text-gray-400'; // Цвет по умолчанию
+  }
+};
+
+// Функция для редактирования пользователя
+const editUser = (id) => {
+  console.log('Редактировать пользователя с ID:', id); // Здесь вы можете добавить логику редактирования
+};
+
+// Функция для удаления пользователя
+const deleteUser = (id) => {
+  console.log('Удалить пользователя с ID:', id); // Здесь вы можете добавить логику удаления
+};
+
+// Определение метаданных страницы
+definePageMeta({
+  layout: 'dash'
+});
+
+// Получение пользователей при монтировании компонента
 onMounted(fetchUsers);
 </script>
 
 <style scoped>
-/* Вы можете добавить свои стили, если это необходимо */
+.bg-table {
+  background: #ff4b32 !important;
+  border: 1px solid #ff4b32 !important;
+  color: #ffffff;
+}
+
+.bg-table:hover {
+  background: #ff3f25 !important;
+  border: 1px solid #ff3f25 !important;
+  color: #ffffff;
+}
+
+.bg-table:focus {
+  box-shadow: 0 0 0 2px #271c1c, 0 0 0 4px #ff3f25, 0 1px 2px 0 rgba(0, 0, 0, 0);
+  color: #ffffff;
+}
 </style>

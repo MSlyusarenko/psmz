@@ -16,7 +16,7 @@ html {
 }
 
 .bt-copy-disabled {
-    background-color: #e5e7eb; /* Серый фон для заблокированной кнопки */
+    background-color: #e5e7eb; /* Серый фон для заблокированной кнопки */ 
     color: #9ca3af; /* Серый текст */
     cursor: not-allowed; /* Курсор "нельзя" */
 }

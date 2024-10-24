@@ -11,4 +11,8 @@ export const users = pgTable('users', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
   city: text('city'),
   donate: integer('donate').default(0),
+  position_psmz: text('position_psmz'), // Новое поле для должности в ПСМЗ
+  position_mz: text('position_mz'),     // Новое поле для должности в МЗ
+  rank: text('rank'),                   // Новое поле для ранга
+  bank: text('bank'),                   // Новое поле для банка
 });

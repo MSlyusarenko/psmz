@@ -1,12 +1,11 @@
+import Aura from '@primevue/themes/aura';
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   ssr: true,
 
-  css: [
-    'primevue/resources/themes/saga-blue/theme.css',
-    'primevue/resources/primevue.min.css',
-    'primeicons/primeicons.css', '~/assets/css/main.css', '@mdi/font/css/materialdesignicons.css'],
+  css: ['~/assets/css/main.css', '@mdi/font/css/materialdesignicons.css'],
 
   runtimeConfig: {
     jwtSecret: process.env.JWT_SECRET, // Переносим сюда jwtSecret
@@ -73,9 +72,18 @@ export default defineNuxtConfig({
     }
   },
 
-  plugins: [
-    { src: '~/plugins/primevue.js' }
-  ],
+  primevue: {
+    options: {
+      theme: {
+        preset: Aura // Используй Aura как предустановленную тему
+      },
+      autoImport: true, // Включи автоматический импорт компонентов
+    },
+    components: {
+      include: ['DataTable', 'Column'], // Импортируй DataTable
+    }
+  },
 
-  modules: ['@nuxt/fonts', '@nuxt/ui']
+
+  modules: ['@nuxt/fonts', '@nuxt/ui', '@primevue/nuxt-module']
 })

@@ -7,8 +7,13 @@ export interface SessionUser {
   city: string;
   avatar: string;
   createdAt: string;
-  donate: number | null; // Добавлено новое поле
+  donate: number | null;
+  position_psmz?: string; // Новое поле для должности в ПСМЗ
+  position_mz?: string;   // Новое поле для должности в МЗ
+  rank?: string;          // Новое поле для ранга
+  bank?: string;          // Новое поле для банка
 }
+
 
 export interface SidebarCategory {
   id: number;

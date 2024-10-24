@@ -2,16 +2,6 @@
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
-
-  <UNotifications class="mb-16 mt-128 md:mt-0">
-    <template #title="{ title }">
-      <span v-html="title" />
-    </template>
-
-    <template #description="{ description }">
-      <span v-html="description" />
-    </template>
-  </UNotifications>
 </template>
 
 <style>

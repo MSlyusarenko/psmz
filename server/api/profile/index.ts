@@ -22,6 +22,10 @@ export default defineEventHandler(async (event) => {
       createdAt: tables.users.createdAt,
       nickname: tables.users.nickname,
       donate: tables.users.donate,
+      position_psmz: tables.users.position_psmz, // Новое поле
+      position_mz: tables.users.position_mz,     // Новое поле
+      rank: tables.users.rank,                   // Новое поле
+      bank: tables.users.bank,                   // Новое поле
     })
     .from(tables.users)
     .where(eq(tables.users.id, userSession.id))

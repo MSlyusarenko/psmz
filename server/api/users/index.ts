@@ -15,6 +15,12 @@ export default defineEventHandler(async (event) => {
         avatar: tables.users.avatar,
         city: tables.users.city,
         role: tables.users.role,
+        createdAt: tables.users.createdAt,
+        donate: tables.users.donate,
+        position_psmz: tables.users.position_psmz, // Новое поле
+        position_mz: tables.users.position_mz,     // Новое поле
+        rank: tables.users.rank,                     // Новое поле
+        bank: tables.users.bank,                     // Новое поле
       })
       .from(tables.users);
 
