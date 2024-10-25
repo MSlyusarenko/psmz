@@ -8,6 +8,8 @@
       <p>Имя: {{ user.first_name }}</p>
       <p>Фамилия: {{ user.last_name }}</p>
       <p>Дата создания: {{ formattedDate }}</p>
+      <p>Город: {{ user.city }}</p>
+      <p>Группа доступа: {{ user.role }}</p>
     </div>
   </div>
 </template>

@@ -4,7 +4,7 @@ export interface SessionUser {
   first_name: string;
   last_name: string;
   nickname: string;
-  city: string;
+  city: number;
   avatar: string;
   createdAt: string;
   donate: number | null;

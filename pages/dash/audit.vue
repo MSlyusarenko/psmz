@@ -1,12 +1,17 @@
 <template>
-    <div class="page-dash-style bg-[#2c2d31] size-full rounded-bl-2xl rounded-tl-2xl">
-      <h3>Журнал аудита</h3>
+  <div>
+    <div class="mt-4 mb-4">
+      <h2 class="font-bold text-2xl mb-0">Журнал аудита</h2>
+      <h4 class="font-bold text-color-secondary mt-0 text-[#a7a8a9]">
+        Действия пользователей
+      </h4>
     </div>
-  </template>
+  </div>
+</template>
 
 <script setup>
 definePageMeta({
-    layout: 'dash'
+  layout: 'dash'
 });
 </script>
 

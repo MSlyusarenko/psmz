@@ -33,7 +33,7 @@ onMounted(() => {
   <div class="flex overflow-hidden">
     <Sidebar />
     <main class="flex flex-col flex-grow">
-      <div class="content flex-grow overflow-y-auto page-dash-style bg-[#2c2d31] size-full rounded-bl-2xl rounded-tl-2xl">
+      <div class="content flex-grow overflow-y-auto p-2 md:p-10 page-dash-style bg-[#2c2d31] size-full rounded-bl-none rounded-tl-none md:rounded-bl-2xl md:rounded-tl-2xl">
         <NuxtPage />
       </div>
     </main>
@@ -43,7 +43,6 @@ onMounted(() => {
 <style scoped>
 .page-dash-style {
   /* text-align: center; */
-  padding: 20px;
   height: 100%; /* Обеспечивает, что элемент занимает всю высоту */
   overflow: auto; /* Позволяет содержимому скроллиться */
 }

@@ -75,6 +75,7 @@ export default defineEventHandler(async (event) => {
                 position_mz: users.position_mz,     // Новое поле
                 rank: users.rank,                   // Новое поле
                 bank: users.bank,                   // Новое поле
+                role: users.role,                   // Новое поле
             }))[0];
         }
 
@@ -93,6 +94,7 @@ export default defineEventHandler(async (event) => {
             avatar: user!.avatar,
             createdAt: user!.createdAt.toISOString(),
             donate: user!.donate || 0,
+            role: user!.role || "user"
         });
 
 

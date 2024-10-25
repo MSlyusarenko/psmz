@@ -26,6 +26,7 @@ export default defineEventHandler(async (event) => {
       position_mz: tables.users.position_mz,     // Новое поле
       rank: tables.users.rank,                   // Новое поле
       bank: tables.users.bank,                   // Новое поле
+      role: tables.users.role,                   // Новое поле
     })
     .from(tables.users)
     .where(eq(tables.users.id, userSession.id))
@@ -37,9 +38,6 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 404, message: 'Пользователь не найден' });
   }
 
-  console.log('Возвращаемые данные пользователя:', user);
-  console.log('User Session:', userSession);
-  console.log('User Session ID:', userSession.id);
   return user[0];
 
 });

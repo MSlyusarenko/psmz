@@ -33,24 +33,24 @@ html {
 }
 
 .bt-vk {
-  padding: 12px 18px;
-  border: none;
-  border-radius: 6px;
-  background-color: #0077FF;
-  color: #ffffff;
+  padding: 12px 18px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  background-color: #0077FF !important;
+  color: #ffffff !important;
   font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s ease;
+  cursor: pointer !important;
+  transition: 0.3s ease !important;
 }
 
 .bt-vk:hover {
-  background-color: #0066da;
-    transition: 0.3s ease;
+  background-color: #0066da !important;
+    transition: 0.3s ease !important;
 }
 
 .bt-vk:active {
-  background-color: #005ac0;
-  transition: 0.01s ease;
+  background-color: #005ac0 !important;
+  transition: 0.01s ease !important;
 }
 
 .bt-copy {
@@ -75,24 +75,24 @@ html {
 }
 
 .bt-main {
-  padding: 12px 18px;
-  border: none;
-  border-radius: 6px;
-  background-color: #ff4b32;
-  color: #ffffff;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s ease;
+  padding: 12px 18px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  background-color: #ff4b32 !important;
+  color: #ffffff !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  transition: 0.3s ease !important;
 }
 
 .bt-main:hover {
-  background-color: #ff3f25;
-  transition: 0.3s ease;
+  background-color: #ff3f25 !important;
+  transition: 0.3s ease !important;
 }
 
 .bt-main:active {
-  background-color: #d63722;
-  transition: 0.01s ease;
+  background-color: #d63722 !important;
+  transition: 0.01s ease !important;
 }
 
 .SecVersion {
@@ -173,42 +173,24 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-/* Firefox (uncomment to work in Firefox, although other properties will not work!)  */
-/** {
-  scrollbar-width: thin;
-  scrollbar-color: #1E293B #FFFFFF;
-}*/
+/* Стили для тонкого скроллбара */
+::-webkit-scrollbar {
+  width: 8px; /* Ширина скроллбара */
+}
 
-/* Chrome, Edge and Safari */
-*::-webkit-scrollbar {
-    height: 10px;
-    width: 10px;
-  }
-  *::-webkit-scrollbar-track {
-    border-radius: 5px;
-    background-color: #FFFFFF;
-  }
-  
-  *::-webkit-scrollbar-track:hover {
-    background-color: #FFFFFF;
-  }
-  
-  *::-webkit-scrollbar-track:active {
-    background-color: #FFFFFF;
-  }
-  
-  *::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: #1E293B;
-  }
-  
-  *::-webkit-scrollbar-thumb:hover {
-    background-color: #1E293B;
-  }
-  
-  *::-webkit-scrollbar-thumb:active {
-    background-color: #1E293B;
-  }
+::-webkit-scrollbar-track {
+  background: transparent; /* Прозрачный фон */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #121212; /* Цвет скроллбара */
+  border-radius: 10px; /* Закругление углов */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ff4b32; /* Цвет скроллбара при наведении */
+}
+
 
 .shadow-mainOFF {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
