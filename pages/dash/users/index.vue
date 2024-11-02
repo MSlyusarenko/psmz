@@ -7,8 +7,7 @@
       </h4>
     </div>
     <div class="overflow-hidden rounded-2xl">
-      <DataTable :value="users" responsiveLayout="scroll" v-model:expandedRows="expandedRows" data-key="id" showGridlines
-        removable-sort>
+      <DataTable :value="users" responsiveLayout="scroll" v-model:expandedRows="expandedRows" data-key="id" showGridlines removable-sort>
         <!-- Стрелка для разворачивания строки с действиями -->
         <Column expander style="width: 3rem" />
 
@@ -22,7 +21,7 @@
           </template>
         </Column>
 
-        <!-- Остальные столбцы аналогично -->
+        <!-- Остальные столбцы -->
         <Column header="Город" field="city" sortable>
           <template #body="slotProps">
             {{ getCityName(Number(slotProps.data.city)) }} <!-- Передаем city как число -->
@@ -30,7 +29,6 @@
         </Column>
         <Column field="role" header="Роль" sortable />
         <Column field="position_psmz" header="Должность в ПСМЗ" sortable />
-        <Column field="position_mz" header="Должность в МЗ" sortable />
         <Column field="rank" header="Ранг" sortable />
         <Column field="bank" header="Банк" sortable />
 
@@ -40,7 +38,7 @@
             <span>ID пользователя: {{ data.id }}</span>
           </div>
           <div class="flex flex-column">
-            <Button label="Редактировать" @click="editUser(data.id)" class="bg-table mr-2" />
+            <Button label="Редактировать" @click="goToEditUser(data.id)" class="bg-table mr-2" />
             <Button label="Удалить" @click="deleteUser(data.id)" class="bg-table mr-2" />
           </div>
         </template>
@@ -49,23 +47,20 @@
   </div>
 </template>
 
-
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router'; // Для перехода на страницу редактирования
 
 const users = ref([]);
 const expandedRows = ref([]);
+const router = useRouter(); // Для использования роутера
 
 // Функция для получения пользователей
 const fetchUsers = async () => {
   try {
     const response = await axios.get('/api/users'); // Убедитесь, что путь корректен
-    users.value = response.data.map(user => {
-      return {
-        ...user,
-      };
-    });
+    users.value = response.data;
   } catch (error) {
     console.error('Ошибка при получении пользователей:', error);
   }
@@ -78,12 +73,11 @@ const getCityName = (cityId: number): string => {
     2: 'Приволжск',
     3: 'Невский',
   };
-  return cities[cityId] || 'Неизвестный город'; // Возвращаем название города или 'Неизвестный город'
+  return cities[cityId] || 'Неизвестный город';
 };
 
-
 // Функция для получения цвета никнейма в зависимости от города
-const getNicknameColor = (cityId) => {
+const getNicknameColor = (cityId: number) => {
   switch (cityId) {
     case 1:
       return 'text-blue-400';
@@ -92,23 +86,28 @@ const getNicknameColor = (cityId) => {
     case 3:
       return 'text-green-400';
     default:
-      return 'text-gray-400'; // Цвет по умолчанию
+      return 'text-gray-400';
   }
 };
 
-// Функция для редактирования пользователя
-const editUser = (id) => {
-  console.log('Редактировать пользователя с ID:', id); // Здесь вы можете добавить логику редактирования
+// Функция для редактирования пользователя (переход на страницу редактирования)
+const goToEditUser = (id: number) => {
+  router.push(`users/edit/${id}`);
 };
 
 // Функция для удаления пользователя
-const deleteUser = (id) => {
-  console.log('Удалить пользователя с ID:', id); // Здесь вы можете добавить логику удаления
+const deleteUser = async (id: number) => {
+  try {
+    await axios.delete(`/api/users/${id}`);
+    fetchUsers(); // Обновляем список после удаления
+  } catch (error) {
+    console.error('Ошибка при удалении пользователя:', error);
+  }
 };
 
 // Определение метаданных страницы
 definePageMeta({
-  layout: 'dash'
+  layout: 'dash',
 });
 
 // Получение пользователей при монтировании компонента

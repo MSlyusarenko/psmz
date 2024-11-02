@@ -33,7 +33,7 @@ import { useRouter } from 'vue-router';
 import Topbar from '~/components/Topbar.vue';
 
 useSeoMeta({
-  title: 'Исправление приказов',
+  title: 'Главное - Пресс-служба Министерства здравоохранения #1',
   ogTitle: 'Исправление приказов',
   description: 'Автоматическое исправление приказов',
   ogDescription: 'Автоматическое исправление приказов',

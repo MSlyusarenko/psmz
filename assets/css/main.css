@@ -74,6 +74,48 @@ html {
     transition: 0.01s ease;
 }
 
+.bt-cancel {
+  padding: 12px 18px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  background-color: rgb(231, 30, 20) !important;
+  color: #ffffff !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  transition: 0.3s ease !important;
+}
+
+.bt-cancel:hover {
+  background-color: rgb(201, 26, 17) !important;
+  transition: 0.3s ease !important;
+}
+
+.bt-cancel:active {
+  background-color: rgb(172, 22, 15) !important;
+  transition: 0.01s ease !important;
+}
+
+.bt-save {
+  padding: 12px 18px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  background-color: #22c55e !important;
+  color: #121212 !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  transition: 0.3s ease !important;
+}
+
+.bt-save:hover {
+  background-color: #189b48 !important;
+  transition: 0.3s ease !important;
+}
+
+.bt-save:active {
+  background-color: #106830 !important;
+  transition: 0.01s ease !important;
+}
+
 .bt-main {
   padding: 12px 18px !important;
   border: none !important;
@@ -147,6 +189,25 @@ html {
 .buttonVK:active {
     background-color: #005eca;
     transition: 0.01s ease;
+}
+
+.p-inputtext, /* Селектор для InputText */
+.p-inputnumber /* Селектор для InputNumber */ {
+  background-color: #2c2d31 !important; /* Белый фон */
+  color: #ffffff !important; /* Чёрный текст */
+  border: none !important; /* Убираем обводку */
+  border-radius: 6px !important; /* Скругляем углы */
+}
+
+.p-inputtext:focus, /* Селектор для InputText в фокусе */
+.p-inputnumber:focus /* Селектор для InputNumber в фокусе */ {
+  outline: none !important;
+  box-shadow: 0 0 0 2px #ff4b32 !important; /* Легкая тень при фокусе */
+}
+
+:root {
+  --p-dropdown-background: var(--p-blue-500); /* Задайте цвет фона */
+  --p-dropdown-color: var(--p-white); /* Задайте цвет текста */
 }
 
 .nav-button {

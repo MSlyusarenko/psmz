@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mt-14 mb-4">
+    <div class="mt-14 md:mt-4 mb-4">
       <h2 class="font-bold text-2xl mb-0">Мой профиль</h2>
       <h4 class="font-bold text-color-secondary mt-0 text-[#a7a8a9]">
         Различная информация о вас
@@ -22,7 +22,7 @@
             </div>
             <div class="mr-2 text-profile">
               <div class="md:p-0">
-                <h2 class="text-xl font-bold text-white">{{ user.nickname.split("_").join(" ") }}</h2>
+                <h2 class="text-xl font-bold text-white">{{ user.nickname ? user.nickname.split("_").join(" ") : "NoneNickname" }}</h2>
                 <p class="text-lg font-bold text-gray-400">{{ user.position_psmz }}</p>
               </div>
             </div>

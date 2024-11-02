@@ -80,7 +80,7 @@ export default defineNuxtConfig({
       autoImport: true, // Включи автоматический импорт компонентов
     },
     components: {
-      include: ['DataTable', 'Column'], // Импортируй DataTable
+      include: ['DataTable', 'Column', 'Dropdown'], // Импортируй DataTable
     }
   },
 
