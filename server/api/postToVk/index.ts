@@ -41,7 +41,7 @@ const sendPostToGroup = async (groupId: string, token: string, message: string):
       console.error('Ошибка при публикации в группу ВК:', error.response ? error.response.data : error);
       throw error;
     }
-  };
+  }
   
 
 // Обработчик API-запроса с фронтенда

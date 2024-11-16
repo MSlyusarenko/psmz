@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
 
-  css: ['~/assets/css/main.css', '@mdi/font/css/materialdesignicons.css'],
+  css: ['@mdi/font/css/materialdesignicons.css', '~/assets/css/main.css', '~/assets/css/custom-theme.css'],
 
   runtimeConfig: {
     jwtSecret: process.env.JWT_SECRET, // Переносим сюда jwtSecret
@@ -74,15 +74,15 @@ export default defineNuxtConfig({
 
   primevue: {
     options: {
-      theme: {
-        preset: Aura // Используй Aura как предустановленную тему
-      },
-      autoImport: true, // Включи автоматический импорт компонентов
+        theme: {
+            preset: Aura // Используйте тему Aura, чтобы сохранить её структуру, но цвета будут изменены кастомной темой
+        },
+        autoImport: true, // Включите автоматический импорт компонентов
     },
     components: {
-      include: ['DataTable', 'Column', 'Dropdown'], // Импортируй DataTable
+        include: ['DataTable', 'Column', 'Select'],
     }
-  },
+},
 
 
   modules: ['@nuxt/fonts', '@nuxt/ui', '@primevue/nuxt-module']

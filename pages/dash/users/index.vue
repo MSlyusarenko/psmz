@@ -6,43 +6,46 @@
         Редактирование пользователей
       </h4>
     </div>
-    <div class="overflow-hidden rounded-2xl">
-      <DataTable :value="users" responsiveLayout="scroll" v-model:expandedRows="expandedRows" data-key="id" showGridlines removable-sort>
-        <!-- Стрелка для разворачивания строки с действиями -->
-        <Column expander style="width: 3rem" />
+    <!-- Контейнер таблицы с горизонтальной прокруткой -->
+    <div class="overflow-x-auto">
+      <div class="overflow-hidden rounded-2xl min-w-[600px]"> <!-- Добавлена минимальная ширина -->
+        <DataTable :value="users" responsiveLayout="scroll" v-model:expandedRows="expandedRows" data-key="id" showGridlines removable-sort>
+          <!-- Стрелка для разворачивания строки с действиями -->
+          <Column expander style="width: 3rem" />
 
-        <!-- Столбец с аватаркой и никнеймом -->
-        <Column header="Никнейм" field="nickname" sortable>
-          <template #body="slotProps">
-            <div class="flex items-center">
-              <img :src="slotProps.data.avatar" alt="User Avatar" class="w-8 h-8 rounded-full mr-2" />
-              <span :class="getNicknameColor(slotProps.data.city)" class="font-bold">{{ slotProps.data.nickname }}</span>
+          <!-- Столбец с аватаркой и никнеймом -->
+          <Column header="Никнейм" field="nickname" sortable>
+            <template #body="slotProps">
+              <div class="flex items-center">
+                <img :src="slotProps.data.avatar" alt="User Avatar" class="w-8 h-8 rounded-full mr-2" />
+                <span :class="getNicknameColor(slotProps.data.city)" class="font-bold">{{ slotProps.data.nickname }}</span>
+              </div>
+            </template>
+          </Column>
+
+          <!-- Остальные столбцы -->
+          <Column header="Город" field="city" sortable>
+            <template #body="slotProps">
+              {{ getCityName(Number(slotProps.data.city)) }}
+            </template>
+          </Column>
+          <Column field="role" header="Роль" sortable />
+          <Column field="position_psmz" header="Должность в ПСМЗ" sortable />
+          <Column field="rank" header="Ранг" sortable />
+          <Column field="bank" header="Банк" sortable />
+
+          <!-- Разворачиваемая строка с действиями -->
+          <template #expansion="{ data }">
+            <div class="mb-4">
+              <span>ID пользователя: {{ data.id }}</span>
+            </div>
+            <div class="flex flex-column">
+              <Button label="Редактировать" @click="goToEditUser(data.id)" class="bg-table mr-2" />
+              <Button label="Удалить" @click="deleteUser(data.id)" class="bg-table mr-2" />
             </div>
           </template>
-        </Column>
-
-        <!-- Остальные столбцы -->
-        <Column header="Город" field="city" sortable>
-          <template #body="slotProps">
-            {{ getCityName(Number(slotProps.data.city)) }} <!-- Передаем city как число -->
-          </template>
-        </Column>
-        <Column field="role" header="Роль" sortable />
-        <Column field="position_psmz" header="Должность в ПСМЗ" sortable />
-        <Column field="rank" header="Ранг" sortable />
-        <Column field="bank" header="Банк" sortable />
-
-        <!-- Разворачиваемая строка с действиями -->
-        <template #expansion="{ data }">
-          <div class="mb-4">
-            <span>ID пользователя: {{ data.id }}</span>
-          </div>
-          <div class="flex flex-column">
-            <Button label="Редактировать" @click="goToEditUser(data.id)" class="bg-table mr-2" />
-            <Button label="Удалить" @click="deleteUser(data.id)" class="bg-table mr-2" />
-          </div>
-        </template>
-      </DataTable>
+        </DataTable>
+      </div>
     </div>
   </div>
 </template>
@@ -50,23 +53,21 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import { useRouter } from 'vue-router'; // Для перехода на страницу редактирования
+import { useRouter } from 'vue-router';
 
 const users = ref([]);
 const expandedRows = ref([]);
-const router = useRouter(); // Для использования роутера
+const router = useRouter();
 
-// Функция для получения пользователей
 const fetchUsers = async () => {
   try {
-    const response = await axios.get('/api/users'); // Убедитесь, что путь корректен
+    const response = await axios.get('/api/users');
     users.value = response.data;
   } catch (error) {
     console.error('Ошибка при получении пользователей:', error);
   }
 };
 
-// Функция для получения названия города
 const getCityName = (cityId: number): string => {
   const cities: { [key: number]: string } = {
     1: 'Мирный',
@@ -76,7 +77,6 @@ const getCityName = (cityId: number): string => {
   return cities[cityId] || 'Неизвестный город';
 };
 
-// Функция для получения цвета никнейма в зависимости от города
 const getNicknameColor = (cityId: number) => {
   switch (cityId) {
     case 1:
@@ -90,27 +90,23 @@ const getNicknameColor = (cityId: number) => {
   }
 };
 
-// Функция для редактирования пользователя (переход на страницу редактирования)
 const goToEditUser = (id: number) => {
   router.push(`users/edit/${id}`);
 };
 
-// Функция для удаления пользователя
 const deleteUser = async (id: number) => {
   try {
     await axios.delete(`/api/users/${id}`);
-    fetchUsers(); // Обновляем список после удаления
+    fetchUsers();
   } catch (error) {
     console.error('Ошибка при удалении пользователя:', error);
   }
 };
 
-// Определение метаданных страницы
 definePageMeta({
   layout: 'dash',
 });
 
-// Получение пользователей при монтировании компонента
 onMounted(fetchUsers);
 </script>
 
