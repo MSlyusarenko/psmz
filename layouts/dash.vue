@@ -15,12 +15,13 @@ const checkSession = async () => {
     session.value = response.data?.session; // Устанавливаем данные сессии
     if (!session.value) {
       router.push('/auth');
-    }
+      }
   } catch (error) {
     console.error('Ошибка при проверке сессии:', error);
     router.push('/auth');
   } finally {
     loading.value = false;
+    console.log (session.value.userTokenSession);
   }
 };
 

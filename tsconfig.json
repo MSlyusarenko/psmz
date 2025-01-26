@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "es2020",
     "module": "esnext", // Добавьте поддержку для модулей ES
-    "lib": ["es2020"],
+    "lib": ["dom", "es2020"],
     "moduleResolution": "node"
   }
 }

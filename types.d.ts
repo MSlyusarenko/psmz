@@ -12,6 +12,7 @@ export interface SessionUser {
   position_mz?: string;   // Новое поле для должности в МЗ
   rank?: string;          // Новое поле для ранга
   bank?: string;          // Новое поле для банка
+  access_token: string;
 }
 
 
