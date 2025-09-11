@@ -6,6 +6,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
 
+  vite: {
+    ssr: {
+      noExternal: ['@headlessui/vue']
+    }
+  },
+
   alias: {
     '~~': resolve(__dirname),
     '#root': resolve(__dirname), // для уверенности также определить #root
