@@ -6,12 +6,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   vite: {
-    ssr: {
-      noExternal: ['@headlessui/vue']
-    },
     optimizeDeps: {
-      exclude: ['@headlessui/vue']
+      exclude: ['@headlessui/vue'] // исключаем из предбилда
     }
+  },
+  build: {
+    transpile: ['@headlessui/vue'], // обязательно транспайлим для SSR
   },
 
 
