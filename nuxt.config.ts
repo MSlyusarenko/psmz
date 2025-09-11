@@ -8,11 +8,10 @@ export default defineNuxtConfig({
 
   vite: {
     ssr: {
-      noExternal: [
-        '@headlessui/vue',
-        '@headlessui/vue/dist/components/dialog/dialog.js',
-        '@headlessui/vue/dist/components/transitions/transition.js'
-      ]
+      noExternal: ['@headlessui/vue']
+    },
+    optimizeDeps: {
+      exclude: ['@headlessui/vue']
     }
   },
 
