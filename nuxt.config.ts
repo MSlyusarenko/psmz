@@ -21,7 +21,7 @@ export default defineNuxtConfig({
   },
 
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' },
+    pageTransition: { name: 'slide-left', mode: 'out-in' },
     head: {
       title: 'Автоматические приказы',
       meta: [
@@ -53,7 +53,13 @@ export default defineNuxtConfig({
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap'
         }
-      ]
+      ],
+      script: [
+        {
+          src: 'https://unpkg.com/@vkid/sdk@<3.0.0/dist-sdk/umd/index.js',
+          defer: true,
+        },
+      ],
     }
   },
 
@@ -80,15 +86,15 @@ export default defineNuxtConfig({
 
   primevue: {
     options: {
-        theme: {
-            preset: Aura // Используйте тему Aura, чтобы сохранить её структуру, но цвета будут изменены кастомной темой
-        },
-        autoImport: true, // Включите автоматический импорт компонентов
+      theme: {
+        preset: Aura // Используйте тему Aura, чтобы сохранить её структуру, но цвета будут изменены кастомной темой
+      },
+      autoImport: true, // Включите автоматический импорт компонентов
     },
     components: {
-        include: ['DataTable', 'Column', 'Select'],
+      include: ['DataTable', 'Column', 'Select'],
     }
-},
+  },
 
 
   modules: ['@nuxt/fonts', '@nuxt/ui', '@primevue/nuxt-module']

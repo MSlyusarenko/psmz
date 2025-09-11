@@ -18,8 +18,8 @@ interface VkPostResponse {
 
 const sendPostToGroup = async (
   groupId: string,
-  userTokenSession: string, // Ключ доступа пользователя
   groupToken: string, // Ключ доступа сообщества
+  userTokenSession: string,
   message: string,
   files: any[]
 ): Promise<VkPostResponse> => {
@@ -33,14 +33,14 @@ const sendPostToGroup = async (
     });
 
     console.log('Права доступа:', permissionsResponse.data);
-    
+
     // photos + wall --- 4 | 8192
 
     // Шаг 2: Получаем URL для загрузки фото (используем userTokenSession)
     const uploadServerResponse = await axios.get(`${VK_API_URL}photos.getWallUploadServer`, {
       params: {
         group_id: groupId,
-        access_token: userTokenSession, // Используем ключ доступа пользователя
+        access_token: userTokenSession,
         v: API_VERSION,
       },
     });
@@ -73,32 +73,47 @@ const sendPostToGroup = async (
     const { server, photo, hash } = uploadResponse.data;
 
     // Шаг 4: Сохраняем фото на сервере VK (используем userTokenSession)
-    const savePhotoResponse = await axios.post(`${VK_API_URL}photos.saveWallPhoto`, null, {
-      params: {
-        group_id: groupId,
-        server,
-        photo,
-        hash,
-        access_token: userTokenSession, // Пользователя
-        v: API_VERSION,
-      },
-    });
+    let attachments = '';
 
-    console.log('Ответ от VK API (сохранение фото):', savePhotoResponse.data);
+    if (files.length > 0) {
+      const savePhotoResponse = await axios.post(`${VK_API_URL}photos.saveWallPhoto`, null, {
+        params: {
+          group_id: groupId,
+          server,
+          photo,
+          hash,
+          access_token: userTokenSession,
+          v: API_VERSION,
+        },
+      });
+
+      if (savePhotoResponse.data.error) {
+        throw new Error('VK API error: ' + savePhotoResponse.data.error.error_msg);
+      }
+
+      console.log('Ответ от VK API (сохранение фото):', savePhotoResponse.data);
+
+      attachments = savePhotoResponse.data.response
+        .map((p: any) => `photo${p.owner_id}_${p.id}`)
+        .join(',');
+    }
+
+    // теперь attachments либо пустая строка, либо список фоток
 
     // Шаг 5: Формируем вложения
-    const attachments = savePhotoResponse.data.response
-      .map((photo: any) => `photo${photo.owner_id}_${photo.id}`)
-      .join(',');
+    //const attachments = savePhotoResponse.data.response
+    //  .map((photo: any) => `photo${photo.owner_id}_${photo.id}`)
+    //  .join(',');
 
     // Шаг 6: Публикуем пост с вложениями (используем groupToken)
-    const response = await axios.post<VkPostResponse>(`${VK_API_URL}wall.post`, null, {
+    // const response = await axios.post<VkPostResponse>(`${VK_API_URL}wall.post`, null, {
+    const response = await axios.post(`${VK_API_URL}wall.post`, null, {
       params: {
         owner_id: `-${groupId}`, // Отрицательное значение для групп
         message,
         attachments,
         from_group: 1, // Публикуем от имени группы
-        access_token: groupToken, // Используем ключ доступа сообщества
+        access_token: userTokenSession, // Используем ключ доступа сообщества
         v: API_VERSION,
       },
     });
@@ -158,12 +173,12 @@ export default defineEventHandler(async (event) => {
         throw new Error('Invalid group number');
     }
 
-    if (!userTokenSession || !groupToken) {
+    if (!groupToken) {
       throw new Error('VK token is missing');
     }
 
     // Публикуем пост
-    const result = await sendPostToGroup(groupId, userTokenSession, groupToken, message, files);
+    const result = await sendPostToGroup(groupId, groupToken, userTokenSession, message, files);
     console.log('Результат публикации:', result);
 
     return result;
