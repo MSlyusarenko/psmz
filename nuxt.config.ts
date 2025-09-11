@@ -1,9 +1,15 @@
 import Aura from '@primevue/themes/aura';
+import { resolve } from 'path';
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   ssr: true,
+
+  alias: {
+    '~~': resolve(__dirname),
+    '#root': resolve(__dirname), // для уверенности также определить #root
+  },
 
   css: ['@mdi/font/css/materialdesignicons.css', '~/assets/css/main.css', '~/assets/css/custom-theme.css'],
 

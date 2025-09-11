@@ -1,6 +1,6 @@
 // composables/useAuth.ts
 
-import type { SessionUser } from '@/types';
+import type { SessionUser } from '~~/types';
 
 export const useAuth = () => {
   const authSession = useAuthSession();

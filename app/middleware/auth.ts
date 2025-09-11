@@ -1,4 +1,4 @@
-import { getUserSession } from "~/server/utils/session"; 
+import { getUserSession } from "~~/server/utils/session"; 
 import { sendRedirect } from "h3"; 
 
 export default defineEventHandler((event) => { 

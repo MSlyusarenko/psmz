@@ -1,6 +1,6 @@
 import { defineEventHandler, readBody } from 'h3';
-import { useDrizzle, eq } from '~/server/utils/drizzle';
-import { tables } from '~/server/utils/drizzle';
+import { useDrizzle, eq } from '~~/server/utils/drizzle';
+import { tables } from '~~/server/utils/drizzle';
 
 export default defineEventHandler(async (event) => {
   const db = useDrizzle();

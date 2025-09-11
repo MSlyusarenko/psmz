@@ -66,7 +66,7 @@ import { useFetch } from '#app';
 import { useRouter } from 'vue-router';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import { getCityName } from '~/server/utils/cities';
+import { getCityName } from '~~/server/utils/cities';
 
 const users = ref([]);
 const expandedRows = ref([]);

@@ -1,10 +1,11 @@
-import { defineEventHandler, sendRedirect } from 'h3';
+import { defineEventHandler, sendRedirect, setCookie } from 'h3';
 import { useSafeValidatedQuery } from 'h3-zod';
 import { object, z } from 'zod';
 import { zh } from 'h3-zod';
 import { eq } from 'drizzle-orm';
-import { createSessionToken } from '~/server/utils/session';
-import { users } from '~/server/database/schema';
+import { createSessionToken } from '~~/server/utils/session';
+import { users } from '~~/server/database/schema';
+import { useDrizzle } from '~~/server/utils/drizzle';
 
 const querySchema = z.object({
     code: z.string(),
@@ -30,7 +31,7 @@ export default defineEventHandler(async (event) => {
             throw new Error('Access token not found');
         }
 
-        console.log('Ответ от VK API (публикация поста):', response.data);
+        console.log('Ответ от VK API (публикация поста):', response);
         console.log('Access token:', response.access_token);
 
         const checkUserPermissions = async (userToken: string): Promise<number> => {

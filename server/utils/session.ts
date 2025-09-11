@@ -1,8 +1,8 @@
-// server/utils/session.ts
+// ~~server/utils/session.ts
 import jwt from "jsonwebtoken";
 import { defineEventHandler } from 'h3';
 import { getCookie, deleteCookie } from 'h3';
-import type { SessionUser } from '@/types';
+import type { SessionUser } from '~~/types';
 import type { H3Event } from 'h3';
 
 const createSessionToken = (session: SessionUser) => {
