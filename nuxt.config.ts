@@ -8,9 +8,14 @@ export default defineNuxtConfig({
 
   vite: {
     ssr: {
-      noExternal: ['@headlessui/vue']
+      noExternal: [
+        '@headlessui/vue',
+        '@headlessui/vue/dist/components/dialog/dialog.js',
+        '@headlessui/vue/dist/components/transitions/transition.js'
+      ]
     }
   },
+
 
   alias: {
     '~~': resolve(__dirname),
