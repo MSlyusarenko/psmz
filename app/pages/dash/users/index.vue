@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div class="mt-4 mb-4">
+    <div class="mt-16 md:mt-4 mb-4">
       <h2 class="font-bold text-2xl mb-0">Пользователи</h2>
       <h4 class="font-bold text-color-secondary mt-0 text-[#a7a8a9]">
         Редактирование пользователей
       </h4>
     </div>
     <!-- Контейнер таблицы с горизонтальной прокруткой -->
-    <div class="overflow-x-auto">
-      <div class="overflow-hidden rounded-2xl min-w-[600px]"> <!-- Добавлена минимальная ширина -->
+    <div class="overflow-x-auto rounded-2xl">
+      <div class="min-w-[600px]"> <!-- Добавлена минимальная ширина -->
         <DataTable :value="users" responsiveLayout="scroll" v-model:expandedRows="expandedRows" data-key="id" showGridlines removable-sort>
           <!-- Стрелка для разворачивания строки с действиями -->
           <Column expander style="width: 3rem" />
@@ -127,4 +127,16 @@ onMounted(fetchUsers);
   box-shadow: 0 0 0 2px #271c1c, 0 0 0 4px #ff3f25, 0 1px 2px 0 rgba(0, 0, 0, 0);
   color: #ffffff !important;
 }
+
+.p-datatable-scrollable-wrapper {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch; /* для плавного скролла в iOS */
+  touch-action: pan-x; /* разрешить горизонтальный скролл */
+  max-width: 100%; /* не выходить за пределы родителя */
+}
+
+.p-datatable-scrollable-view {
+  min-width: 700px; /* или ширина, которая больше ширины окна */
+}
+
 </style>

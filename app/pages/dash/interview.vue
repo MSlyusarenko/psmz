@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mt-14 md:mt-4 mb-4">
+    <div class="mt-16 md:mt-4 mb-4">
       <h2 class="font-bold text-2xl mb-0">Конструктор постов</h2>
       <h4 class="font-bold text-color-secondary mt-0 text-[#a7a8a9]">
         Создание постов

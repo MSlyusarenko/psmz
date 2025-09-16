@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mt-14 md:mt-4 mb-4">
+    <div class="mt-16 md:mt-4 mb-4">
       <h2 class="font-bold text-2xl mb-0">Мой профиль</h2>
       <h4 class="font-bold text-color-secondary mt-0 text-[#a7a8a9]">
         Различная информация о вас
@@ -37,10 +37,19 @@
           <div class="mt-3">Ваш ID:
             <span class="font-bold select-all">{{ user.id }}</span>
           </div>
+          <div>Ваш VK ID:
+            <span class="font-bold select-all">{{ user.vk_id }}</span>
+          </div>
           <div class="mt-2">Вы работаете в:
             <span class="font-bold">{{ userCity }}</span>
           </div>
           <div>Ваша группа доступа:
+            <span class="font-bold">{{ user.role }}</span>
+          </div>
+          <div class="mt-2">Количество предупреждений:
+            <span class="font-bold">{{ user.role }}</span>
+          </div>
+          <div>Количество выговоров:
             <span class="font-bold">{{ user.role }}</span>
           </div>
         </div>

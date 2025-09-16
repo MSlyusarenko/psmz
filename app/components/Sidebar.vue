@@ -22,9 +22,9 @@
             </div>
 
             <!-- Кнопка для вызова сайдбара -->
-            <Button class="sidebar-toggle mt-2 z-40" @click="toggleSidebar">
+            <Button class="sidebar-toggle mt-3 z-40" @click="toggleSidebar">
                 <div class="flex items-center">
-                    <span class="material-symbols-rounded">menu</span>
+                    <span class="material-symbols-rounded py-1">menu</span>
                 </div>
             </Button>
         </div>
