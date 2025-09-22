@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   css: ['@mdi/font/css/materialdesignicons.css', '~/assets/css/main.css', '~/assets/css/custom-theme.css'],
 
   runtimeConfig: {
-    jwtSecret: process.env.JWT_SECRET, // Переносим сюда jwtSecret
+    jwtSecret: process.env.JWT_SECRET,
     public: {
       version: '1.0.0'
     }
@@ -22,13 +22,13 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'slide-left', mode: 'out-in' },
     head: {
-      title: 'Автоматические приказы',
+      title: 'Портал - Пресс-служба Министерства здравоохранения',
       meta: [
-        { hid: 'description', name: 'description', content: 'Здесь можно исправить и создать приказы' },
-        { hid: 'og:title', property: 'og:title', content: 'Автоматические приказы' },
-        { hid: 'og:description', property: 'og:description', content: 'Здесь можно исправить и создать приказы' },
-        { hid: 'og:image', property: 'og:image', content: 'https://auto-prikaz.vercel.app/preview.webp' },
-        { hid: 'og:url', property: 'og:url', content: 'https://auto-prikaz.vercel.app' },
+        { hid: 'description', name: 'description', content: 'Инструмент для работы с сообществами' },
+        { hid: 'og:title', property: 'og:title', content: 'Пресс-служба Министерства здравоохранения' },
+        { hid: 'og:description', property: 'og:description', content: 'Инструмент для работы с сообществами' },
+        { hid: 'og:image', property: 'og:image', content: 'https://psmz.mslyusarenko.store/preview.webp' },
+        { hid: 'og:url', property: 'og:url', content: 'https://psmz.mslyusarenko.store' },
         { hid: 'og:type', property: 'og:type', content: 'website' }
       ],
       link: [
