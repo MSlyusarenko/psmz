@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN nuxt i
+RUN npm i
 
 COPY . .
 
