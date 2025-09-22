@@ -131,33 +131,37 @@ export default defineEventHandler(async (event) => {
     console.log('User in DB:', user ? 'Found' : 'Creating new');
 
     if (!user) {
-      user = (await useDrizzle().insert(users).values({
-        first_name: userData.first_name,
-        last_name: userData.last_name,
-        avatar: userData.photo_max,
-        vk_id: `${userData.id}`,
-        nickname: "default_nickname",
-        donate: 0,
-        // Дефолты для новых полей
-        position_psmz: 0,
-        position_mz: 0,
-        rank: 0,
-        bank: 0,
-        role: 'user',
-      }).returning({
-        id: users.id,
-        first_name: users.first_name,
-        last_name: users.last_name,
-        avatar: users.avatar,
-        createdAt: users.createdAt,
-        donate: users.donate,
-        position_psmz: users.position_psmz,
-        position_mz: users.position_mz,
-        rank: users.rank,
-        bank: users.bank,
-        role: users.role,
-      }))[0];
+      sendRedirect(event, '/');
     }
+
+    // if (!user) {
+    //   user = (await useDrizzle().insert(users).values({
+    //     first_name: userData.first_name,
+    //     last_name: userData.last_name,
+    //     avatar: userData.photo_max,
+    //     vk_id: `${userData.id}`,
+    //     nickname: "default_nickname",
+    //     donate: 0,
+    //     // Дефолты для новых полей
+    //     position_psmz: 0,
+    //     position_mz: 0,
+    //     rank: 0,
+    //     bank: 0,
+    //     role: 'user',
+    //   }).returning({
+    //     id: users.id,
+    //     first_name: users.first_name,
+    //     last_name: users.last_name,
+    //     avatar: users.avatar,
+    //     createdAt: users.createdAt,
+    //     donate: users.donate,
+    //     position_psmz: users.position_psmz,
+    //     position_mz: users.position_mz,
+    //     rank: users.rank,
+    //     bank: users.bank,
+    //     role: users.role,
+    //   }))[0];
+    // }
 
     // Создание токена сессии
     const sessionToken = createSessionToken({

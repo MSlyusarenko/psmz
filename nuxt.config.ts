@@ -7,7 +7,7 @@ export default defineNuxtConfig({
 
   alias: {
     '~~': resolve(__dirname),
-    '#root': resolve(__dirname), // для уверенности также определить #root
+    '#root': resolve(__dirname), // для уверенности #root
   },
 
   css: ['@mdi/font/css/materialdesignicons.css', '~/assets/css/main.css', '~/assets/css/custom-theme.css'],
@@ -24,9 +24,9 @@ export default defineNuxtConfig({
     head: {
       title: 'Портал - Пресс-служба Министерства здравоохранения',
       meta: [
-        { hid: 'description', name: 'description', content: 'Инструмент для работы с сообществами' },
+        { hid: 'description', name: 'description', content: 'Инструмент для работы с сообществами ВК' },
         { hid: 'og:title', property: 'og:title', content: 'Пресс-служба Министерства здравоохранения' },
-        { hid: 'og:description', property: 'og:description', content: 'Инструмент для работы с сообществами' },
+        { hid: 'og:description', property: 'og:description', content: 'Инструмент для работы с сообществами ВК' },
         { hid: 'og:image', property: 'og:image', content: 'https://psmz.mslyusarenko.store/preview.webp' },
         { hid: 'og:url', property: 'og:url', content: 'https://psmz.mslyusarenko.store' },
         { hid: 'og:type', property: 'og:type', content: 'website' }
@@ -86,9 +86,9 @@ export default defineNuxtConfig({
   primevue: {
     options: {
       theme: {
-        preset: Aura // Используйте тему Aura, чтобы сохранить её структуру, но цвета будут изменены кастомной темой
+        preset: Aura // Aura структуру, но цвета в custom
       },
-      autoImport: true, // Включите автоматический импорт компонентов
+      autoImport: true,
     },
     components: {
       include: ['DataTable', 'Column', 'Select'],
