@@ -19,7 +19,7 @@
 
       <!-- Main -->
       <main class="flex flex-col items-center justify-center text-center px-4">
-        <img src="/public/logo.svg" alt="Логотип" class="w-40 mb-6 object-contain opacity-0 animate-fadein delay-300" />
+        <img src="/logo.svg" alt="Логотип" class="w-40 mb-6 object-contain opacity-0 animate-fadein delay-300" />
 
         <h1 class="text-3xl md:text-6xl font-bold opacity-0 animate-fadein delay-400">
           Мы скоро откроемся

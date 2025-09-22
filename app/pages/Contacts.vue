@@ -22,7 +22,7 @@
             </h1>
             <div class="flex justify-center mt-4">
               <Button class="buttonVK font-medium flex items-center" @click="vk">
-                <img src="/public/VK.svg" alt="VK" class="w-4 h-4 mr-1.5" />
+                <img src="/VK.svg" alt="VK" class="w-4 h-4 mr-1.5" />
                 ВКонтакте
               </Button>
             </div>

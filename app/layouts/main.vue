@@ -3,7 +3,7 @@
     <NuxtPage />
     <nav class="topbar w-full py-4 fixed top-0 z-50 flex items-center">
       <div class="flex items-center ml-4">
-        <img src="/public/logo.svg" class="h-8 mobile-logo" />
+        <img src="/logo.svg" class="h-8 mobile-logo" />
       </div>
     </nav>
     <section>

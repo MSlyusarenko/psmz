@@ -2,7 +2,7 @@
   <div class="overflow-hidden">
     <NuxtPage />
 
-    <section class="text-sm text-gray-400 cursor-pointer absolute bottom-0 left-0 mb-4 ml-4" @click="isOpen = true">
+    <section class="text-sm text-gray-400 cursor-pointer absolute bottom-0 left-0 mb-4 ml-4 hidden sm:block" @click="isOpen = true">
       <span @click="isOpen = true">V. 0.1.0-β</span>
     </section>
     <UModal v-model="isOpen">

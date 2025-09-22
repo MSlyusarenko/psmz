@@ -14,7 +14,7 @@
                             <div class="pt-4">
                                 <Button class="bt-vk font-bold" @click="login">
                                     <div class="flex items-center">
-                                        <img src="/public/VK.svg" alt="VK" class="w-5 h-5 mr-1.5" />
+                                        <img src="/VK.svg" alt="VK" class="w-5 h-5 mr-1.5" />
                                         Войти с помощью VK ID
                                     </div>
                                 </Button>
