@@ -33,8 +33,8 @@ onMounted(() => {
 <template>
   <div class="flex overflow-hidden">
     <Sidebar />
-    <main class="flex flex-col flex-grow">
-      <div class="content flex-grow overflow-y-auto p-2 md:p-10 page-dash-style bg-[#2c2d31] size-full rounded-bl-none rounded-tl-none md:rounded-bl-2xl md:rounded-tl-2xl">
+    <main class="content flex flex-col overflow-y-auto p-2 md:p-10 page-dash-style bg-[#2c2d31] w-full rounded-bl-none rounded-tl-none md:rounded-bl-2xl md:rounded-tl-2xl">
+      <div class="content flex-grow overflow-y-auto">
         <NuxtPage />
       </div>
     </main>
@@ -62,5 +62,6 @@ main {
 .content {
   flex: 1; /* Заставляет контент занимать всё доступное пространство в main */
   overflow-y: auto; /* Прокрутка по вертикали, если контента больше, чем помещается на экран */
+  height: 100vh;
 }
 </style>

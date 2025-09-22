@@ -181,7 +181,7 @@ export default defineEventHandler(async (event) => {
       httpOnly: true,
       secure: isProd,
       path: '/',
-      maxAge: 7 * 24 * 60 * 60, // 7 дней
+      maxAge: 60 * 60, // 7 * 24 * 60 * 60 - 7 дней
     });
 
     console.log('Session cookie set, redirecting to /dash');

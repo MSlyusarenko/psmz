@@ -6,19 +6,24 @@
         Редактирование пользователей
       </h4>
     </div>
+
     <!-- Контейнер таблицы с горизонтальной прокруткой -->
-    <div class="overflow-x-auto rounded-2xl">
-      <div class="min-w-[600px]"> <!-- Добавлена минимальная ширина -->
-        <DataTable :value="users" responsiveLayout="scroll" v-model:expandedRows="expandedRows" data-key="id" showGridlines removable-sort>
-          <!-- Стрелка для разворачивания строки с действиями -->
+    <div class="rounded-2xl overflow-x-auto w-full">
+      <div class="min-w-[900px]" style="-webkit-overflow-scrolling: touch; touch-action: pan-x;">
+        <DataTable :value="users" v-model:expandedRows="expandedRows" data-key="id" showGridlines :paginator="false"
+          :rowsPerPageOptions="[10, 20, 30, 40, 50]" :rows="usersTableRows" @update:rows="changeRows" removable-sort
+          scrollable scrollDirection="both">
+          <!-- Стрелка -->
           <Column expander style="width: 3rem" />
 
-          <!-- Столбец с аватаркой и никнеймом -->
-          <Column header="Никнейм" field="nickname" sortable>
+          <!-- Никнейм -->
+          <Column header="Никнейм" field="nickname" sortable style="min-width: 256px">
             <template #body="slotProps">
               <div class="flex items-center">
                 <img :src="slotProps.data.avatar" alt="User Avatar" class="w-8 h-8 rounded-full mr-2" />
-                <span :class="getNicknameColor(slotProps.data.city)" class="font-bold">{{ slotProps.data.nickname }}</span>
+                <span :class="getNicknameColor(slotProps.data.city)" class="font-bold">
+                  {{ slotProps.data.nickname }}
+                </span>
               </div>
             </template>
           </Column>
@@ -34,7 +39,7 @@
           <Column field="rank" header="Ранг" sortable />
           <Column field="bank" header="Банк" sortable />
 
-          <!-- Разворачиваемая строка с действиями -->
+          <!-- Разворачиваемая строка -->
           <template #expansion="{ data }">
             <div class="mb-4">
               <span>ID пользователя: {{ data.id }}</span>
@@ -47,13 +52,25 @@
         </DataTable>
       </div>
     </div>
+    <div class="rounded-2xl mt-2 w-full">
+      <Paginator :rows="usersTableRows" :totalRecords="users.length" :rowsPerPageOptions="[10, 20, 30, 40, 50]"
+        v-model:first="first" @rows-change="changeRows" />
+    </div>
   </div>
 </template>
+
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+
+const usersTableRows = ref(20);
+const first = ref(0);
+
+const changeRows = (rows: number) => {
+  usersTableRows.value = rows;
+};
 
 const users = ref([]);
 const expandedRows = ref([]);
@@ -127,16 +144,4 @@ onMounted(fetchUsers);
   box-shadow: 0 0 0 2px #271c1c, 0 0 0 4px #ff3f25, 0 1px 2px 0 rgba(0, 0, 0, 0);
   color: #ffffff !important;
 }
-
-.p-datatable-scrollable-wrapper {
-  overflow-x: auto !important;
-  -webkit-overflow-scrolling: touch; /* для плавного скролла в iOS */
-  touch-action: pan-x; /* разрешить горизонтальный скролл */
-  max-width: 100%; /* не выходить за пределы родителя */
-}
-
-.p-datatable-scrollable-view {
-  min-width: 700px; /* или ширина, которая больше ширины окна */
-}
-
 </style>

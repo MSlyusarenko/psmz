@@ -20,11 +20,12 @@
     --p-select-option-selected-focus-color: #ff4b32;
     --text-selection-background: #327dff;
     --text-selection-color: #ffffff;
+
 }
 
 ::selection {
-  background-color: var(--text-selection-background) !important;
-  color: var(--text-selection-color) !important;
+    background-color: var(--text-selection-background) !important;
+    color: var(--text-selection-color) !important;
 }
 
 /* Стили для полей ввода текста и чисел */
@@ -66,6 +67,20 @@
 
 .p-select-option-selected,
 .p-dropdown-item.p-highlight {
-  background-color: #ff4b32 !important;
-  color: #ffffff !important;
+    background-color: #ff4b32 !important;
+    color: #ffffff !important;
+}
+
+
+.p-paginator .p-paginator-page,
+.p-paginator .p-paginator-prev,
+.p-paginator .p-paginator-next {
+    color: #ffffff !important;
+    background: var(--p-background-color) !important;
+    border-radius: 6px;
+}
+
+.p-paginator .p-paginator-page.p-highlight {
+    background: #ff4b32 !important;
+    color: #ffffff !important;
 }
