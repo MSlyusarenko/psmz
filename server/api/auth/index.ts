@@ -39,7 +39,7 @@ export default defineEventHandler((event) => {
     .replace(/\//g, '_');
 
   // Build redirect URI
-  const redirectUri = new URL('/login/callback', process.env.VK_REDIRECT_URI || 'http://localhost:3000').toString();
+  const redirectUri = new URL('/login/callback', process.env.HOST || 'http://localhost:3000').toString();
 
   // Scopes: Space-separated, add yours (e.g., for photos/wall in group posts)
   const scope = 'offline photos wall video docs'; // Adjust as needed

@@ -67,7 +67,7 @@ export default defineEventHandler(async (event) => {
       throw new Error('Verifier not found');
     }
 
-    const redirectUri = new URL('/login/callback', process.env.VK_REDIRECT_URI || 'http://localhost:3000').toString();
+    const redirectUri = new URL('/login/callback', process.env.HOST || 'http://localhost:3000').toString();
     const deviceId = parsedPayload.device_id || '';
 
     console.log('Exchanging code for token...');
