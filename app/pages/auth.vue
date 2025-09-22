@@ -28,6 +28,19 @@
 </template>
 
 <script setup lang="ts">
+useHead({
+  htmlAttrs: { lang: 'ru' },
+  meta: [
+    { name: 'theme-color', content: '#121212' },
+    { name: 'theme-color', content: '#121212', media: '(prefers-color-scheme: dark)' },
+    { name: 'theme-color', content: '#121212', media: '(prefers-color-scheme: light)' },
+    { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+    { name: 'apple-mobile-web-app-capable', content: 'yes' },
+    { name: 'msapplication-navbutton-color', content: '#121212' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' }
+  ]
+})
+
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
