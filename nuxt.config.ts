@@ -27,8 +27,8 @@ export default defineNuxtConfig({
         { hid: 'description', name: 'description', content: 'Инструмент для работы с сообществами ВК' },
         { hid: 'og:title', property: 'og:title', content: 'Пресс-служба Министерства здравоохранения' },
         { hid: 'og:description', property: 'og:description', content: 'Инструмент для работы с сообществами ВК' },
-        { hid: 'og:image', property: 'og:image', content: 'https://psmz.mslyusarenko.store/preview.webp' },
-        { hid: 'og:url', property: 'og:url', content: 'https://psmz.mslyusarenko.store' },
+        { hid: 'og:image', property: 'og:image', content: 'https://psmz.provportal.ru/preview.webp' },
+        { hid: 'og:url', property: 'og:url', content: 'https://psmz.provportal.ru' },
         { hid: 'og:type', property: 'og:type', content: 'website' }
       ],
       link: [
