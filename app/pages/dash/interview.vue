@@ -92,23 +92,6 @@ const filePreview = (file: File) => {
   return URL.createObjectURL(file)
 }
 
-const session = ref(null);
-
-const getUserToken = async () => { 
-  try { 
-    const response = await axios.get('/api/session/check'); 
-    session.value = response.data?.session; // Устанавливаем данные сессии 
-    if (!session.value) { 
-      console.error('Сессия не найдена'); 
-    } 
-  } catch (error) { 
-    console.error('Ошибка при получении токена пользователя:', error); 
-  } finally { 
-    console.log (session.value.userTokenSession) 
-    return session.value.userTokenSession 
-  } 
-};
-
 const postToGroup = async (groupNumber: number) => {
   try {
     if (!postText.value.trim() && files.value.length === 0) {
@@ -116,12 +99,9 @@ const postToGroup = async (groupNumber: number) => {
       return
     }
 
-    const userToken = await getUserToken();
-
     const formData = new FormData()
     formData.append('groupNumber', groupNumber.toString())
     formData.append('message', postText.value)
-    formData.append('userTokenSession', userToken)
     files.value.forEach((file, index) => {
       formData.append(`file${index}`, file)
     })

@@ -19,7 +19,6 @@ const checkSession = async () => {
     router.push('/auth');
   } finally {
     loading.value = false;
-    console.log(session.value.userTokenSession);
   }
 }; onMounted(() => {
   checkSession(); // Проверяем сессию при монтировании

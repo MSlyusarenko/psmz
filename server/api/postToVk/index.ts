@@ -1,7 +1,6 @@
-import { defineEventHandler, readMultipartFormData } from 'h3';
+import { getCookie, defineEventHandler, readMultipartFormData } from 'h3';
 import axios from 'axios';
 import FormData from 'form-data';
-import { response } from 'express';
 
 const VK_API_URL = 'https://api.vk.com/method/';
 const API_VERSION = '5.131';
@@ -111,9 +110,9 @@ const sendPostToGroup = async (
       params: {
         owner_id: `-${groupId}`, // Отрицательное значение для групп
         message,
-        attachments,
-        from_group: 1, // Публикуем от имени группы
-        access_token: userTokenSession, // Используем ключ доступа сообщества
+        attachments,            // строка вида photo{owner_id}_{id},photo{owner_id}_{id2}
+        from_group: 1,          // пост от имени группы
+        access_token: userTokenSession,
         v: API_VERSION,
       },
     });
@@ -127,30 +126,35 @@ const sendPostToGroup = async (
   }
 };
 
+import { getUserSession } from '~~/server/utils/session'; // импорт функции получения сессии
+
 export default defineEventHandler(async (event) => {
   try {
-    // Читаем multipart/form-data (текст и файлы)
     const formData = await readMultipartFormData(event);
-    console.log('Полученные данные:', formData);
-
     const body: any = {};
     const files: any[] = [];
 
-    // Разделяем текст и файлы
     formData?.forEach((part) => {
       if (part.name === 'groupNumber' || part.name === 'message') {
-        body[part.name] = part.data.toString();
-      } else if (part.name === 'userTokenSession') {
         body[part.name] = part.data.toString();
       } else if (part.name?.startsWith('file')) {
         files.push(part);
       }
     });
 
-    console.log('Тело запроса:', body);
-    console.log('Файлы:', files);
+    const { groupNumber, message } = body;
 
-    const { groupNumber, message, userTokenSession } = body;
+    // Получаем сессию из HttpOnly куки (JWT)
+    const userSession = getUserSession(event);
+    if (!userSession) {
+      throw new Error('Нет авторизации: пользовательская сессия отсутствует');
+    }
+
+    // Из userSession берём токен доступа
+    const userTokenSession = userSession.access_token;
+    if (!userTokenSession) {
+      throw new Error('Access token в сессии не найден');
+    }
 
     // Определяем ключ доступа сообщества и ID группы
     let groupToken: string | undefined;

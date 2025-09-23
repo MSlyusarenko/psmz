@@ -175,9 +175,11 @@ export default defineEventHandler(async (event) => {
       createdAt: user.createdAt.toISOString(),
       donate: user.donate || 0,
       role: user.role || "user",
-      userTokenSession: tokenResponse.access_token,
+      // userTokenSession: tokenResponse.access_token,
+      access_token: tokenResponse.access_token,
       refreshToken: tokenResponse.refresh_token || '',
     });
+
 
     // Установка куки сессии (secure условно для dev)
     const isProd = process.env.NODE_ENV === 'production';
