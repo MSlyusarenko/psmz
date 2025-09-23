@@ -1,6 +1,7 @@
 import { getCookie, defineEventHandler, readMultipartFormData } from 'h3';
 import axios from 'axios';
 import FormData from 'form-data';
+import qs from 'qs';
 
 const VK_API_URL = 'https://api.vk.com/method/';
 const API_VERSION = '5.131';
@@ -75,16 +76,32 @@ const sendPostToGroup = async (
     let attachments = '';
 
     if (files.length > 0) {
-      const savePhotoResponse = await axios.post(`${VK_API_URL}photos.saveWallPhoto`, null, {
-        params: {
+      // const savePhotoResponse = await axios.post(`${VK_API_URL}photos.saveWallPhoto`, null, {
+      //   params: {
+      //     group_id: groupId,
+      //     server,
+      //     photo,
+      //     hash,
+      //     access_token: userTokenSession,
+      //     v: API_VERSION,
+      //   },
+      // });
+
+      const savePhotoResponse = await axios.post(`${VK_API_URL}photos.saveWallPhoto`,
+        qs.stringify({
           group_id: groupId,
           server,
           photo,
           hash,
           access_token: userTokenSession,
           v: API_VERSION,
-        },
-      });
+        }),
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        }
+      );
 
       if (savePhotoResponse.data.error) {
         throw new Error('VK API error: ' + savePhotoResponse.data.error.error_msg);

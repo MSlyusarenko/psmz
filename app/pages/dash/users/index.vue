@@ -46,7 +46,8 @@
             </div>
             <div class="flex flex-column">
               <Button label="Редактировать" @click="goToEditUser(data.id)" class="bg-table mr-2" />
-              <Button label="Удалить" @click="deleteUser(data.id)" class="bg-table mr-2" />
+              <Button label="Удалить" class="bg-table mr-2 " />
+              <!-- <Button label="Удалить" @click="deleteUser(data.id)" class="bg-table mr-2 " /> -->
             </div>
           </template>
         </DataTable>

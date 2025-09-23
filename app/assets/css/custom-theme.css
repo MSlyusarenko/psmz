@@ -29,7 +29,8 @@
 
 /* Стили для полей ввода текста и чисел */
 .p-inputtext,
-.p-inputnumber {
+.p-inputnumber,
+.p-textarea {
     background-color: #2c2d31 !important;
     color: #ffffff !important;
     border: none !important;
@@ -37,7 +38,8 @@
 }
 
 .p-inputtext:focus,
-.p-inputnumber:focus {
+.p-inputnumber:focus,
+.p-textarea:focus {
     outline: none !important;
     box-shadow: 0 0 0 2px #ff4b32 !important;
 }

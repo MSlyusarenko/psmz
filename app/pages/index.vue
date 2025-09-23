@@ -9,7 +9,7 @@
       <div class="bg-blob bg-purple opacity-50 bg-blur animation-blob-3"></div>
     </div>
 
-    <div class="w-full max-w-[1280px] flex flex-col justify-between h-full min-h-[90vh] relative z-10">
+    <div class="w-full max-w-[1280px] flex flex-col justify-between h-full min-h-[90vh] relative z-10 pb-4">
       <!-- Header -->
       <header class="p-4 text-base text-gray-400 flex justify-center items-center">
         <div class="text-sm md:text-base  text-center opacity-0 animate-fadeinUp delay-1000">Пресс-служба <br
@@ -37,7 +37,7 @@
 
       <!-- Footer -->
       <footer
-        class="p-4 text-sm text-gray-400 flex flex-col md:flex-row justify-between items-center text-center gap-2 opacity-0 animate-fadein delay-1000">
+        class="mt-6 p-4 text-sm text-gray-400 flex flex-col md:flex-row justify-between items-center text-center gap-2 opacity-0 animate-fadein delay-1000">
         <span>© MSlyusarenkoDev 2025</span>
         <span>Задизайнено и разработано <br class="md:hidden" /> MSlyusarenko совместно c Gizuzu с ❤️</span>
       </footer>

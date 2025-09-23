@@ -43,14 +43,4 @@ const goToMain = () => {
     text-align: center;
     padding: 48px;
 }
-
-.custom-icon {
-    width: 24px;
-    height: 24px;
-}
-
-.custom-icon {
-    width: 24px;
-    height: 24px;
-}
 </style>

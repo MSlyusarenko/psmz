@@ -151,25 +151,4 @@ const logout = async () => {
   overflow: auto;
   /* Позволяет содержимому скроллиться */
 }
-
-.log-bt {
-  padding: 12px 18px !important;
-  border: none !important;
-  border-radius: 6px !important;
-  background-color: #ff4b32 !important;
-  color: #ffffff !important;
-  font-size: 1rem;
-  cursor: pointer !important;
-  transition: 0.3s ease !important;
-}
-
-.log-bt:hover {
-  background-color: #d4311b !important;
-  transition: 0.3s ease !important;
-}
-
-.log-bt:active {
-  background-color: rgb(182, 37, 18) !important;
-  transition: 0.01s ease !important;
-}
 </style>

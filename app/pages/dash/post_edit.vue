@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="mt-16 md:mt-4 mb-4">
-      <h2 class="font-bold text-2xl mb-0">Собеседование</h2>
+      <h2 class="font-bold text-2xl mb-0">Конструктор постов</h2>
       <h4 class="font-bold text-color-secondary mt-0 text-[#a7a8a9]">
-        Автопостинг собеседований
+        Создание постов
       </h4>
     </div>
 
@@ -16,7 +16,7 @@
             <!-- Левая колонка: текст -->
             <div class="flex flex-col gap-1.5 lg:col-span-4">
               <label for="postText" class="font-bold text-sm lg:text-base">Текст поста</label>
-              <Textarea v-model="postText" rows="18" autoResize placeholder="Введите текст поста..." class="w-full" />
+              <Textarea v-model="postText" rows="20" autoResize placeholder="Введите текст поста..." class="w-full" />
               <small class="text-xs lg:text-sm text-color-secondary">
                 Примерно так пост будет выглядеть с ПК
               </small>
@@ -27,7 +27,16 @@
               <!-- Загрузка файлов -->
               <div class="flex flex-col gap-1.5">
                 <label class="font-bold text-sm lg:text-base">Загрузка изображений</label>
-                <input type="file" multiple @change="handleFileUpload" />
+                <!-- Кнопка -->
+                <div>
+                  <input ref="fileInput" type="file" multiple class="hidden" @change="handleFileUpload" />
+                  <Button type="button" class="p-button-secondary w-full mb-2" @click="triggerFileInput">
+                    <div class="flex items-center justify-center">
+                      <span class="material-symbols-rounded mr-1.5">note_stack_add</span>
+                      <span class="font-bold">Выбрать файлы</span>
+                    </div>
+                  </Button>
+                </div>
               </div>
 
               <!-- Отображение загруженных файлов -->
@@ -35,10 +44,15 @@
                 <draggable v-model="files" item-key="name" class="flex flex-wrap gap-2">
                   <template #item="{ element, index }">
                     <div class="file-item">
-                      <img v-if="isImage(element)" :src="filePreview(element)" alt="Preview" class="file-thumbnail" />
+                      <img v-if="isImage(element)" :src="filePreview(element)" alt="Preview"
+                        class="file-thumbnail mb-2" />
                       <span v-else class="file-name">{{ element.name }}</span>
-                      <Button icon="pi pi-times" class="p-button-danger p-button-sm mt-2" @click="removeFile(index)"
-                        label="Удалить" />
+                      <Button class="p-button-danger w-full mb-2" @click="removeFile(index)">
+                        <div class="flex items-center">
+                          <span class="material-symbols-rounded mr-1.5">delete</span>
+                          <span class="font-bold">Удалить</span>
+                        </div>
+                      </Button>
                     </div>
                   </template>
                 </draggable>
@@ -48,7 +62,7 @@
             <!-- Переключатель города (на всю ширину) -->
             <div class="flex flex-col gap-1.5 lg:col-span-10 w-full">
               <SelectButton v-model="selectedCity" :options="cityOptions" optionLabel="label" optionValue="value"
-                :disabled="optionDisabled"/>
+                :disabled="optionDisabled" />
             </div>
           </div>
 
@@ -58,9 +72,13 @@
     <!-- Кнопка публикации -->
     <div class="bg-[#121212] shadow-lg overflow-hidden w-full rounded-2xl">
       <div class="p-6 gap-4 relative z-20">
-        <div class="flex flex-col"></div>
-        <Button label="Опубликовать пост" icon="pi pi-send" class="p-button-success w-full"
-          :disabled="!selectedCity || (!postText.trim() && files.length === 0)" @click="postToGroup(selectedCity)" />
+        <Button class="p-button-success w-full" :disabled="!selectedCity || (!postText.trim() && files.length === 0)"
+          @click="postToGroup(selectedCity)">
+          <div class="flex items-center">
+            <span class="material-symbols-rounded mr-1.5">fact_check</span>
+            <span class="font-bold">Опубликовать пост</span>
+          </div>
+        </Button>
       </div>
     </div>
   </div>
@@ -78,9 +96,9 @@ const files = ref<File[]>([])
 
 // доступный только 1 вариант – по user.city
 const cityOptions = [
-  { label: 'Синяя', value: 1, color: 'blue' },
-  { label: 'Красная', value: 2, color: 'red' },
-  { label: 'Зелёная', value: 3, color: 'green' }
+  { label: 'ОКБ-М', value: 1, color: 'blue' },
+  { label: 'ЦГБ-П', value: 2, color: 'red' },
+  { label: 'ЦГБ-Н', value: 3, color: 'green' }
 ]
 
 const selectedCity = ref(user.value?.city ?? null)
@@ -90,6 +108,14 @@ const optionDisabled = computed(() => {
   // если у пользователя только один город
   return (option: any) => option.value !== user.value?.city
 })
+
+const fileInput = ref<HTMLInputElement | null>(null)
+
+const triggerFileInput = () => {
+  if (fileInput.value) {
+    fileInput.value.click()
+  }
+}
 
 const handleFileUpload = (event: Event) => {
   const input = event.target as HTMLInputElement
@@ -161,10 +187,9 @@ definePageMeta({ layout: 'dash' })
 }
 
 .file-thumbnail {
-  width: 100px;
-  height: 100px;
+  width: 164px;
+  height: 156px;
   object-fit: cover;
-  border: 1px solid #ccc;
   border-radius: 8px;
 }
 

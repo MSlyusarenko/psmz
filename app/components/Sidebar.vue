@@ -114,8 +114,8 @@ const categories = ref([
         id: 3,
         title: 'Создание постов',
         links: [
+            { title: 'Конструктор', icon: 'edit_square', url: '/dash/post_edit' },
             { title: 'Собеседование', icon: 'person_add', url: '/dash/interview' },
-            { title: 'Рейд', icon: 'person_search', url: '/dash/raid' },
         ],
         isCollapsed: false,
     },

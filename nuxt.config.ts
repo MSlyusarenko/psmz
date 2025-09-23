@@ -95,7 +95,7 @@ export default defineNuxtConfig({
       autoImport: true,
     },
     components: {
-      include: ['DataTable', 'Column', 'Select'],
+      include: ['DataTable', 'Column', 'Select', 'Button', 'InputTextarea', 'RadioButton', 'FileUpload', 'OrderList', 'DataView'],
     }
   },
 
