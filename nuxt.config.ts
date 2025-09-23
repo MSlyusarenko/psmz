@@ -99,12 +99,5 @@ export default defineNuxtConfig({
     }
   },
 
-  ui: {
-    colors: {
-      primary: '#yourColorHex',  // цвет плашки (primary)
-      // или любые другие цвета, например secondary, accent и т.п.
-    }
-  },
-
   modules: ['@nuxt/fonts', '@nuxt/ui', '@primevue/nuxt-module']
 })

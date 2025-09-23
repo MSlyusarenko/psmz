@@ -11,9 +11,6 @@
     --p-background-color: #2c2d31;
     /* цвет фона */
 
-    --color-primary: #111111;
-
-
     --p-button-background: var(--p-primary-color);
     --p-button-text-color: #ffffff;
     --p-button-border-color: var(--p-primary-color);
